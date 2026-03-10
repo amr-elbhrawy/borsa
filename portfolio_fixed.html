@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>شراكة البحراوي × أصلان</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#04070d; --bg2:#080e18; --bg3:#0d1520; --bg4:#121d2a; --bg5:#172030;
+  --amr:#00d4ff; --amr2:#66e8ff; --amr-dim:rgba(0,212,255,0.09); --amr-bdr:rgba(0,212,255,0.22);
+  --yousef:#ffd166; --yousef2:#ffe599; --yousef-dim:rgba(255,209,102,0.09); --yousef-bdr:rgba(255,209,102,0.25);
+  --green:#00e676; --green-dim:rgba(0,230,118,0.08); --green-bdr:rgba(0,230,118,0.22);
+  --red:#ff4d6d; --red-dim:rgba(255,77,109,0.08); --red-bdr:rgba(255,77,109,0.22);
+  --orange:#ffb74d; --orange-dim:rgba(255,183,77,0.08); --orange-bdr:rgba(255,183,77,0.22);
+  --purple:#b197fc; --purple-dim:rgba(177,151,252,0.08); --purple-bdr:rgba(177,151,252,0.22);
+  --white:#e8f0fe; --dim:#4a5a6e; --dim2:#2a3a4e;
+  --border:rgba(255,255,255,0.05); --border2:rgba(255,255,255,0.09); --border3:rgba(255,255,255,0.13);
+  --radius:14px; --container:680px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{background:var(--bg);color:var(--white);font-family:'Tajawal',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 40% at 20% 0%,rgba(0,212,255,0.04),transparent),radial-gradient(ellipse 60% 50% at 80% 100%,rgba(255,209,102,0.05),transparent);pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:0;height:0}
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+select option{background:var(--bg3)}
+textarea{resize:vertical;font-family:'Tajawal',sans-serif}
+.mono{font-family:'Courier New',monospace;font-weight:600}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes popIn{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+@keyframes toastDown{from{transform:translateX(-50%) translateY(-60px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+@keyframes toastUp{from{transform:translateX(-50%) translateY(0);opacity:1}to{transform:translateX(-50%) translateY(-60px);opacity:0}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fu{animation:fadeUp .28s ease both}
+.fu1{animation:fadeUp .28s .05s ease both}
+.fu2{animation:fadeUp .28s .10s ease both}
+.fu3{animation:fadeUp .28s .15s ease both}
+.fu4{animation:fadeUp .28s .20s ease both}
+
+.wrap{max-width:var(--container);margin:0 auto;position:relative;z-index:1}
+
+.hdr{padding:13px 16px 11px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(4,7,13,.93);backdrop-filter:blur(20px);z-index:50}
+.hdr-logo{display:flex;align-items:center;gap:10px}
+.hdr-icon{width:33px;height:33px;border-radius:9px;background:linear-gradient(135deg,var(--yousef),#a87800);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(255,209,102,.3)}
+.hdr-title{font-size:.78rem;font-weight:800;letter-spacing:.4px}
+.hdr-sub{font-size:.58rem;color:var(--yousef);font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.hdr-right{display:flex;gap:7px;align-items:center}
+.date-chip{display:flex;align-items:center;gap:5px;font-size:.67rem;color:var(--dim);background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:5px 10px;font-weight:500}
+.ibtn{width:32px;height:32px;border-radius:9px;background:var(--bg3);border:1px solid var(--border2);color:var(--dim);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.ibtn:hover{border-color:var(--yousef-bdr);color:var(--yousef2);background:var(--yousef-dim)}
+.ibtn:disabled{opacity:.28;cursor:not-allowed;pointer-events:none}
+
+.ticker-wrap{background:var(--bg3);border-bottom:1px solid var(--border);padding:5px 0;overflow:hidden}
+.ticker-inner{display:inline-flex;white-space:nowrap;animation:ticker 40s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;padding:0 20px;border-right:1px solid var(--border)}
+.t-sym{font-size:.72rem;font-weight:700;color:var(--white)}
+.t-price{font-size:.72rem;color:var(--dim)}
+.t-chg{font-size:.68rem;display:flex;align-items:center;gap:2px}
+
+.nav-scroll{padding:9px 16px 6px;overflow-x:auto;scrollbar-width:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-row{display:flex;gap:6px;width:max-content;min-width:100%}
+.npill{display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:30px;border:1px solid var(--border2);background:var(--bg3);color:var(--dim);font-family:'Tajawal',sans-serif;font-size:.73rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .18s}
+.npill:hover{border-color:var(--amr-bdr);color:var(--amr2)}
+.npill.on{background:var(--amr-dim);border-color:var(--amr);color:var(--amr2)}
+
+.page{display:none;padding:0 16px 110px;animation:fadeUp .25s ease}
+.page.on{display:block}
+
+.sec{display:flex;align-items:center;gap:8px;margin:18px 0 10px}
+.sec-ico{width:24px;height:24px;border-radius:6px;background:var(--yousef-dim);border:1px solid var(--yousef-bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-lbl{font-size:.62rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border3),transparent)}
+
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:17px;margin-bottom:12px;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--yousef-bdr);box-shadow:0 6px 28px rgba(255,209,102,.06)}
+.card-glow::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,209,102,.4),transparent)}
+
+.lbl{display:block;font-size:.68rem;color:var(--dim);font-weight:700;margin-bottom:5px;letter-spacing:.3px}
+.inp{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;color:var(--white);font-family:'Tajawal',sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;transition:border-color .18s,box-shadow .18s}
+.inp:focus{border-color:var(--yousef);box-shadow:0 0 0 3px var(--yousef-dim)}
+.inp::placeholder{color:var(--dim2)}
+.sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;color:var(--white);font-family:'Tajawal',sans-serif;font-size:.88rem;outline:none;margin-bottom:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;color:var(--white);font-family:'Tajawal',sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;transition:border-color .18s}
+.textarea:focus{border-color:var(--yousef)}
+
+.btn-primary{width:100%;padding:13px;background:linear-gradient(135deg,var(--yousef),#a87800);border:none;border-radius:10px;color:#000;font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .18s;letter-spacing:.3px;box-shadow:0 2px 12px rgba(255,209,102,.15)}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 4px 24px rgba(255,209,102,.3)}
+.btn-ghost{background:transparent;border:1px solid var(--border2);border-radius:9px;color:var(--dim);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Tajawal',sans-serif;font-size:.78rem;font-weight:700;padding:8px 12px;transition:all .18s}
+.btn-ghost:hover{border-color:var(--yousef-bdr);color:var(--yousef2);background:var(--yousef-dim)}
+.btn-sell{background:var(--red-dim);border:1px solid var(--red-bdr);color:var(--red)}
+.btn-sell:hover{background:rgba(255,77,109,.15);border-color:var(--red);color:var(--red)}
+.btn-archive{background:var(--purple-dim);border:1px solid var(--purple-bdr);color:var(--purple)}
+.btn-archive:hover{background:rgba(177,151,252,.15);border-color:var(--purple);color:var(--purple)}
+.btn-edit{background:var(--amr-dim);border:1px solid var(--amr-bdr);color:var(--amr2)}
+.btn-edit:hover{background:rgba(0,212,255,.15);border-color:var(--amr);color:var(--amr2)}
+.btn-price{background:var(--bg4);border:1px solid var(--border2);border-radius:9px;color:var(--amr2);font-family:'Tajawal',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;height:40px;padding:0 13px;flex-shrink:0;transition:all .18s}
+.btn-price:hover{border-color:var(--amr-bdr);background:var(--amr-dim)}
+
+.opick-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.opick{padding:10px 4px;border-radius:10px;border:1px solid var(--border2);background:var(--bg3);color:var(--dim);font-family:'Tajawal',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s}
+.opick.amr{background:var(--amr-dim);border-color:var(--amr);color:var(--amr2)}
+.opick.yousef{background:var(--yousef-dim);border-color:var(--yousef);color:var(--yousef2)}
+.opick.shared{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+
+.hero{margin:16px 0;border-radius:18px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--yousef-bdr);padding:22px 20px;position:relative;overflow:hidden;box-shadow:0 0 50px rgba(255,209,102,.05)}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yousef),transparent)}
+.hero-glow1{position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,var(--yousef-dim),transparent);pointer-events:none}
+.hero-glow2{position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.03),transparent);pointer-events:none}
+
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.pcard{border-radius:var(--radius);padding:15px 14px;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px}
+.pcard-amr{background:linear-gradient(145deg,var(--amr-dim),var(--bg2));border:1px solid var(--amr-bdr)}
+.pcard-amr::before{background:linear-gradient(90deg,transparent,rgba(0,212,255,.35),transparent)}
+.pcard-yousef{background:linear-gradient(145deg,var(--yousef-dim),var(--bg2));border:1px solid var(--yousef-bdr)}
+.pcard-yousef::before{background:linear-gradient(90deg,transparent,rgba(255,209,102,.35),transparent)}
+
+.avail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.avail-card{border-radius:12px;padding:14px 16px}
+.avail-amr{background:var(--amr-dim);border:1px solid var(--amr-bdr)}
+.avail-yousef{background:var(--yousef-dim);border:1px solid var(--yousef-bdr)}
+.avail-label{font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:4px}
+.avail-amr .avail-label{color:var(--amr)}
+.avail-yousef .avail-label{color:var(--yousef)}
+.avail-val{font-size:1.2rem;font-weight:800;margin-bottom:3px}
+.avail-amr .avail-val{color:var(--amr2)}
+.avail-yousef .avail-val{color:var(--yousef2)}
+.avail-sub{font-size:.65rem;color:var(--dim)}
+
+.scard{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:15px;margin-bottom:12px;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.scard:hover{border-color:var(--yousef-bdr);box-shadow:0 6px 24px rgba(255,209,102,.06)}
+.scard-bar{position:absolute;top:0;right:0;width:3px;height:100%}
+.sticker{width:44px;height:44px;border-radius:12px;background:var(--bg3);border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:11px}
+.stat-box{background:var(--bg3);border-radius:9px;padding:8px 5px;text-align:center;border:1px solid var(--border)}
+.stat-lbl{font-size:.55rem;color:var(--dim);font-weight:700;margin-bottom:3px;letter-spacing:.3px}
+.stat-val{font-size:.78rem;font-weight:700}
+
+.own-bar-labels{display:flex;justify-content:space-between;font-size:.65rem;margin-bottom:4px}
+.own-bar{height:4px;border-radius:2px;background:var(--bg4);overflow:hidden;display:flex;margin-bottom:12px}
+.own-bar-a{background:linear-gradient(90deg,var(--amr),var(--amr2));transition:width .7s ease}
+.own-bar-y{background:linear-gradient(90deg,var(--yousef),var(--yousef2));transition:width .7s ease}
+
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px}
+.sb{border-radius:10px;padding:11px 12px}
+.sb-a{background:var(--amr-dim);border:1px solid var(--amr-bdr)}
+.sb-y{background:var(--yousef-dim);border:1px solid var(--yousef-bdr)}
+.sb-name{font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:4px}
+.sb-a .sb-name{color:var(--amr)}
+.sb-y .sb-name{color:var(--yousef)}
+.sb-qty{font-size:.68rem;color:var(--dim)}
+.sb-val{font-size:.95rem;font-weight:700;margin:3px 0}
+.sb-a .sb-val{color:var(--amr2)}
+.sb-y .sb-val{color:var(--yousef2)}
+
+.price-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.price-inp{flex:1;background:var(--bg4);border:1px solid var(--border2);border-radius:9px;padding:9px 12px;color:var(--white);font-family:'Courier New',monospace;font-size:.88rem;font-weight:600;outline:none;height:40px;transition:border-color .18s}
+.price-inp:focus{border-color:var(--amr)}
+
+.tcard{background:var(--bg2);border-radius:12px;padding:13px 15px;margin-bottom:9px;position:relative;overflow:hidden}
+.tcard-bar{position:absolute;top:0;right:0;width:3px;height:100%}
+.tbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.67rem;font-weight:700}
+.tbuy{background:var(--green-dim);color:var(--green);border:1px solid var(--green-bdr)}
+.tsell{background:var(--red-dim);color:var(--red);border:1px solid var(--red-bdr)}
+
+.tf-row{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;background:var(--bg2);border-radius:10px;margin-bottom:8px;border:1px solid var(--border2)}
+
+.note-card{background:var(--bg2);border-radius:12px;padding:13px 15px;margin-bottom:9px;position:relative;overflow:hidden}
+.note-bar{position:absolute;top:0;right:0;width:3px;height:100%;opacity:.7}
+.mood-btns{display:flex;gap:7px;margin-bottom:10px}
+.mbtn{flex:1;padding:9px 4px;border-radius:9px;border:1px solid var(--border2);background:var(--bg3);color:var(--dim);font-family:'Tajawal',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .18s}
+
+.settle-card{border-radius:var(--radius);padding:21px 18px;margin-bottom:12px;position:relative;overflow:hidden}
+.settle-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px}
+.settle-amr{background:linear-gradient(145deg,var(--amr-dim),var(--bg2));border:1px solid var(--amr-bdr)}
+.settle-amr::before{background:linear-gradient(90deg,transparent,rgba(0,212,255,.45),transparent)}
+.settle-yousef{background:linear-gradient(145deg,var(--yousef-dim),var(--bg2));border:1px solid var(--yousef-bdr)}
+.settle-yousef::before{background:linear-gradient(90deg,transparent,rgba(255,209,102,.45),transparent)}
+
+.arc-card{background:var(--bg2);border:1px solid var(--purple-bdr);border-radius:12px;padding:13px 15px;margin-bottom:9px;opacity:.85}
+
+.log-row{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:7px;border-right:3px solid transparent}
+.log-sell{border-right-color:var(--red)}
+.log-buy{border-right-color:var(--green)}
+.log-price{border-right-color:var(--amr)}
+.log-edit{border-right-color:var(--yousef)}
+.log-capital{border-right-color:var(--orange)}
+.log-archive{border-right-color:var(--purple)}
+.log-transfer{border-right-color:#f0abfc}
+.log-cash{border-right-color:var(--green)}
+
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;justify-content:center}
+.bnav-inner{width:100%;max-width:var(--container);background:rgba(4,7,13,.93);border-top:1px solid var(--border2);backdrop-filter:blur(20px);padding:8px 4px 16px;display:flex;justify-content:space-around;align-items:center}
+.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:4px 6px;border-radius:12px;transition:all .18s;min-width:50px}
+.bnav-ico{width:35px;height:35px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.bnav-ico.on{background:var(--amr-dim);border:1px solid var(--amr-bdr)}
+.bnav-lbl{font-size:.58rem;font-weight:700;color:var(--dim);letter-spacing:.3px;transition:all .18s}
+.bnav-lbl.on{color:var(--amr2)}
+
+.fab{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--yousef),#a87800);border:none;border-radius:50px;padding:11px 22px;color:#000;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:800;cursor:pointer;box-shadow:0 4px 24px rgba(255,209,102,.35);z-index:60;display:flex;align-items:center;gap:7px;letter-spacing:.3px;transition:all .2s}
+.fab:hover{transform:translateX(-50%) translateY(-2px);box-shadow:0 6px 32px rgba(255,209,102,.5)}
+
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:300;align-items:flex-end;justify-content:center;backdrop-filter:blur(5px);animation:overlayIn .2s ease}
+.overlay.on{display:flex}
+.modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:20px;width:100%;max-width:var(--container);max-height:90vh;overflow-y:auto;border-top:1px solid var(--yousef-bdr);animation:slideUp .3s cubic-bezier(.34,1.1,.64,1);box-shadow:0 -20px 60px rgba(255,209,102,.08);position:relative}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,209,102,.55),transparent);border-radius:22px 22px 0 0}
+.modal-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.modal-title{font-size:1rem;font-weight:800;color:var(--yousef2);display:flex;align-items:center;gap:8px}
+.modal-close{background:var(--bg3);border:1px solid var(--border2);color:var(--dim);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.modal-close:hover{background:var(--bg4);color:var(--white)}
+
+.dlg-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+.dlg-overlay.on{display:flex;animation:overlayIn .18s ease}
+.dlg-box{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:28px 22px 20px;width:100%;max-width:320px;animation:popIn .22s cubic-bezier(.34,1.4,.64,1);position:relative;overflow:hidden}
+.dlg-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--yousef-bdr),transparent)}
+.dlg-ico-wrap{width:56px;height:56px;border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center}
+.dlg-title{font-size:1.02rem;font-weight:800;text-align:center;margin-bottom:7px}
+.dlg-msg{font-size:.82rem;color:var(--dim);text-align:center;line-height:1.65;margin-bottom:20px}
+.dlg-msg strong{color:var(--white);font-weight:800}
+.dlg-btns{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.dlg-btns.single{grid-template-columns:1fr}
+.dbtn{padding:11px;border-radius:11px;border:1px solid var(--border2);background:var(--bg3);color:var(--dim);font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:800;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px}
+.dbtn:hover{background:var(--bg4);color:var(--white)}
+.dbtn-danger{background:var(--red-dim);border-color:var(--red-bdr);color:var(--red)}
+.dbtn-danger:hover{background:rgba(255,77,109,.18)}
+.dbtn-sell{background:var(--red-dim);border-color:var(--red-bdr);color:var(--red)}
+.dbtn-sell:hover{background:rgba(255,77,109,.18)}
+.dbtn-archive{background:var(--purple-dim);border-color:var(--purple-bdr);color:var(--purple)}
+.dbtn-archive:hover{background:rgba(177,151,252,.18)}
+.dbtn-ok{background:var(--yousef-dim);border-color:var(--yousef-bdr);color:var(--yousef2)}
+.dbtn-ok:hover{background:rgba(255,209,102,.18)}
+
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--bg3);border:1px solid var(--yousef-bdr);border-radius:30px;padding:9px 18px;font-size:.78rem;font-weight:700;color:var(--yousef2);z-index:999;display:flex;align-items:center;gap:8px;white-space:nowrap;pointer-events:none;box-shadow:0 4px 20px rgba(255,209,102,.2)}
+.toast.show{animation:toastDown .3s ease both}
+.toast.hide{animation:toastUp .3s ease both}
+
+.preview-box{background:var(--bg3);border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid var(--border2)}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center}
+.pv-lbl{font-size:.6rem;color:var(--dim);font-weight:700;margin-bottom:3px}
+.pv-val{font-size:.95rem;font-weight:700}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--yousef),transparent);margin:10px 0;opacity:.2}
+
+.green{color:var(--green)}
+.red{color:var(--red)}
+.gold{color:var(--yousef2)}
+.cyan{color:var(--amr2)}
+.dim{color:var(--dim)}
+.empty{text-align:center;padding:40px;color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.85rem}
+.filters{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.fbtn{padding:5px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--dim);font-family:'Tajawal',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:5px}
+.fbtn.on{background:var(--amr-dim);border-color:var(--amr);color:var(--amr2)}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:.65rem;font-weight:700}
+.tag-buy{background:var(--green-dim);color:var(--green);border:1px solid var(--green-bdr)}
+.tag-sell{background:var(--red-dim);color:var(--red);border:1px solid var(--red-bdr)}
+.tag-arc{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-bdr)}
+
+.stock-actions{display:flex;gap:8px}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"><span id="toast-ico"></span><span id="toast-msg"></span></div>
+
+<div class="dlg-overlay" id="dlg-ov">
+  <div class="dlg-box">
+    <div class="dlg-ico-wrap" id="dlg-ico-wrap"></div>
+    <div class="dlg-title" id="dlg-title"></div>
+    <div class="dlg-msg" id="dlg-msg"></div>
+    <div class="dlg-btns" id="dlg-btns">
+      <button class="dbtn" onclick="dlgCancel()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>إلغاء</button>
+      <button class="dbtn" id="dlg-ok" onclick="dlgConfirm()"></button>
+    </div>
+  </div>
+</div>
+
+<div class="dlg-overlay" id="alert-ov">
+  <div class="dlg-box">
+    <div class="dlg-ico-wrap" style="background:var(--orange-dim);border:1px solid var(--orange-bdr)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <div class="dlg-title" id="alert-title">تنبيه</div>
+    <div class="dlg-msg" id="alert-msg"></div>
+    <div class="dlg-btns single"><button class="dbtn dbtn-ok" onclick="closeAlert()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>حسناً</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="sell-ov">
+  <div class="modal">
+    <div class="modal-hdr">
+      <span class="modal-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 18 23 18 23 12"/></svg>تنفيذ البيع</span>
+      <button class="modal-close" onclick="closeModal('sell-ov')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div id="sell-content"></div>
+  </div>
+</div>
+
+<div class="overlay" id="edit-ov">
+  <div class="modal">
+    <div class="modal-hdr">
+      <span class="modal-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--yousef2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>تعديل السهم</span>
+      <button class="modal-close" onclick="closeModal('edit-ov')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <input type="hidden" id="em-id">
+    <div class="lbl">رمز السهم</div><input type="text" id="em-ticker" class="inp">
+    <div class="lbl">اسم الشركة</div><input type="text" id="em-name" class="inp">
+    <div class="lbl">الملكية</div>
+    <div class="opick-grid">
+      <div class="opick" id="em-amr" onclick="selOwner('amr','em')">👤 عمرو</div>
+      <div class="opick" id="em-yousef" onclick="selOwner('yousef','em')">👤 يوسف</div>
+      <div class="opick" id="em-shared" onclick="selOwner('shared','em')">👥 مشترك</div>
+    </div>
+    <input type="hidden" id="em-owner" value="shared">
+    <div class="row2">
+      <div><div class="lbl">أسهم عمرو</div><input type="number" id="em-aqty" class="inp"></div>
+      <div><div class="lbl">أسهم يوسف</div><input type="number" id="em-yqty" class="inp"></div>
+    </div>
+    <div class="row2">
+      <div><div class="lbl">سعر الشراء</div><input type="number" id="em-buy" class="inp" step="0.01"></div>
+      <div><div class="lbl">السعر الحالي</div><input type="number" id="em-price" class="inp" step="0.01"></div>
+    </div>
+    <button class="btn-primary" onclick="saveEdit()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>حفظ التعديل</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-logo">
+      <div class="hdr-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div><div class="hdr-title">شراكة البورصة</div><div class="hdr-sub">البحراوي × أصلان</div></div>
+    </div>
+    <div class="hdr-right">
+      <div class="date-chip"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span id="hdr-date">—</span></div>
+      <button class="ibtn" id="undo-btn" onclick="undoAct()" title="تراجع" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg></button>
+      <button class="ibtn" id="redo-btn" onclick="redoAct()" title="إعادة" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg></button>
+      <button class="ibtn" onclick="goPage('settings')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="ticker-wrap" id="ticker"></div>
+  <div class="nav-scroll"><div class="nav-row" id="topnav"></div></div>
+
+  <!-- DASHBOARD -->
+  <div class="page on" id="page-dash">
+    <div class="hero fu card-glow">
+      <div class="hero-glow1"></div><div class="hero-glow2"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+        <div>
+          <div style="font-size:.6rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:6px">إجمالي المحفظة</div>
+          <div class="mono" style="font-size:2.4rem;font-weight:700;line-height:1" id="d-total">—<span style="font-size:1.1rem;color:var(--dim);margin-right:3px">ج</span></div>
+        </div>
+        <div style="text-align:left">
+          <div style="font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:6px">العائد</div>
+          <div id="d-pnl" style="font-size:1.25rem;font-weight:800"></div>
+          <div id="d-pct" class="mono" style="font-size:.78rem;margin-top:3px"></div>
+        </div>
+      </div>
+      <div style="height:3px;border-radius:2px;background:var(--bg4);overflow:hidden;margin-top:16px">
+        <div id="d-bar" style="height:100%;background:linear-gradient(90deg,var(--yousef),var(--yousef2));border-radius:2px;transition:width .8s ease;width:50%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.62rem;color:var(--dim)">
+        <span class="mono">رأسمال: <span id="d-cap">—</span></span>
+        <span class="mono" id="d-range">—</span>
+      </div>
+    </div>
+    <div class="partner-grid fu1" id="d-partners"></div>
+
+    <div class="sec fu2" style="margin-top:14px">
+      <div class="sec-ico">📋</div>
+      <span class="sec-lbl">ملخص التكلفة الفعلية</span>
+      <div class="sec-line"></div>
+    </div>
+    <div id="d-cost-summary" class="fu2"></div>
+
+    <div class="sec fu3">
+      <div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <span class="sec-lbl">الأسهم النشطة</span>
+      <div class="sec-line"></div>
+    </div>
+    <div id="d-stocks"></div>
+  </div>
+
+  <!-- STOCKS -->
+  <div class="page" id="page-stocks"><div id="stocks-list"></div></div>
+
+  <!-- TRADES -->
+  <div class="page" id="page-trades">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div><span class="sec-lbl">تسجيل شراء</span><div class="sec-line"></div></div>
+    <div class="card card-glow">
+      <div class="row2">
+        <div><div class="lbl">التاريخ</div><input type="date" id="tr-date" class="inp"></div>
+        <div><div class="lbl">رمز السهم</div><input type="text" id="tr-ticker" class="inp" placeholder="AMOC" oninput="this.value=this.value.toUpperCase();calcBuyPrev()"></div>
+      </div>
+      <div class="row2">
+        <div><div class="lbl">المنفذ</div><select id="tr-who" class="sel" onchange="calcBuyPrev()"><option value="amr">عمرو</option><option value="yousef">يوسف</option><option value="shared">مشترك</option></select></div>
+        <div><div class="lbl">الكمية</div><input type="number" id="tr-qty" class="inp" placeholder="0" oninput="calcBuyPrev()"></div>
+      </div>
+      <div class="row2">
+        <div><div class="lbl">السعر</div><input type="number" id="tr-price" class="inp" placeholder="0.00" step="0.01" oninput="calcBuyPrev()"></div>
+        <div><div class="lbl">العمولة (ج)</div><input type="number" id="tr-comm" class="inp" placeholder="0" step="0.01" value="0" oninput="calcBuyPrev()"></div>
+      </div>
+      <div><div class="lbl">ملاحظة</div><input type="text" id="tr-note" class="inp" placeholder="اختياري..."></div>
+      <div id="buy-prev" style="display:none" class="preview-box">
+        <div class="preview-grid" id="buy-prev-grid"></div>
+        <div class="divider"></div>
+        <div id="buy-bal-info" style="font-size:.75rem;text-align:center;margin-top:4px"></div>
+      </div>
+      <button class="btn-primary" onclick="saveBuy()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>تسجيل الشراء</button>
+    </div>
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><span class="sec-lbl">سجل المعاملات</span><div class="sec-line"></div></div>
+    <div id="trades-sum" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px"></div>
+    <div class="filters" id="trades-filters">
+      <button class="fbtn on" onclick="filterTrades('all',this)">الكل</button>
+      <button class="fbtn" onclick="filterTrades('buy',this)">شراء</button>
+      <button class="fbtn" onclick="filterTrades('sell',this)">بيع</button>
+    </div>
+    <div id="trades-list"></div>
+  </div>
+
+  <!-- SETTLEMENT -->
+  <div class="page" id="page-settle">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="sec-lbl">التسوية الكاملة</span><div class="sec-line"></div></div>
+    <div id="settle-partners"></div>
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><span class="sec-lbl">تفصيلة كل سهم</span><div class="sec-line"></div></div>
+    <div id="settle-detail"></div>
+  </div>
+
+  <!-- TRANSFERS -->
+  <div class="page" id="page-transfers">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><span class="sec-lbl">تحويل جديد</span><div class="sec-line"></div></div>
+    <div class="card card-glow">
+      <div class="lbl">الاتجاه</div>
+      <select id="tf-dir" class="sel"><option value="y2a">يوسف حوّل لعمرو</option><option value="a2y">عمرو حوّل ليوسف</option></select>
+      <div class="row2">
+        <div><div class="lbl">المبلغ</div><input type="number" id="tf-amt" class="inp" placeholder="0"></div>
+        <div><div class="lbl">التاريخ</div><input type="date" id="tf-date" class="inp"></div>
+      </div>
+      <div class="lbl">ملاحظة</div><input type="text" id="tf-note" class="inp" placeholder="اختياري...">
+      <button class="btn-primary" onclick="addTransfer()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>سجل التحويل</button>
+    </div>
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="sec-lbl">السجل</span><div class="sec-line"></div></div>
+    <div id="tf-list"></div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="page" id="page-notes">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><span class="sec-lbl">يومية الجلسة</span><div class="sec-line"></div></div>
+    <div class="card card-glow">
+      <div class="row2">
+        <div><div class="lbl">التاريخ</div><input type="date" id="note-date" class="inp"></div>
+        <div>
+          <div class="lbl">حال الجلسة</div>
+          <div class="mood-btns" id="mood-btns">
+            <button class="mbtn" id="mb-good" onclick="selMood('good')">📈<span>جيدة</span></button>
+            <button class="mbtn" id="mb-neutral" onclick="selMood('neutral')">↔️<span>عادية</span></button>
+            <button class="mbtn" id="mb-bad" onclick="selMood('bad')">📉<span>سيئة</span></button>
+          </div>
+          <input type="hidden" id="note-mood" value="good">
+        </div>
+      </div>
+      <div class="lbl">ملاحظات</div>
+      <textarea id="note-text" class="textarea" rows="4" placeholder="مثال: باعت AMOC بربح..."></textarea>
+      <button class="btn-primary" onclick="saveNote()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>حفظ الجلسة</button>
+    </div>
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><span class="sec-lbl">سجل الجلسات</span><div class="sec-line"></div></div>
+    <div id="notes-list"></div>
+  </div>
+
+  <!-- ARCHIVE -->
+  <div class="page" id="page-archive">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div><span class="sec-lbl">الأرشيف — الأسهم المباعة</span><div class="sec-line"></div></div>
+    <div id="archive-list"></div>
+  </div>
+
+  <!-- LOG -->
+  <div class="page" id="page-log">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><span class="sec-lbl">سجل العمليات</span><div class="sec-line"></div></div>
+    <div class="filters">
+      <button class="fbtn on" onclick="filterLog('all',this)">الكل</button>
+      <button class="fbtn" onclick="filterLog('buy',this)">شراء</button>
+      <button class="fbtn" onclick="filterLog('sell',this)">بيع</button>
+      <button class="fbtn" onclick="filterLog('price',this)">أسعار</button>
+      <button class="fbtn" onclick="filterLog('edit',this)">تعديل</button>
+      <button class="fbtn" onclick="filterLog('capital',this)">رأسمال</button>
+      <button class="fbtn" onclick="filterLog('cash',this)">نقدي</button>
+      <button class="fbtn" onclick="filterLog('archive',this)">أرشيف</button>
+    </div>
+    <div id="log-list"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="page" id="page-settings">
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="sec-lbl">رأس المال الأساسي</span><div class="sec-line"></div></div>
+    <div class="card card-glow">
+      <div class="row2">
+        <div><div class="lbl">رأسمال عمرو</div><input type="number" id="cap-amr" class="inp" placeholder="51320"></div>
+        <div><div class="lbl">رأسمال يوسف</div><input type="number" id="cap-yousef" class="inp" placeholder="36100"></div>
+      </div>
+      <button class="btn-primary" onclick="saveCapital()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>حفظ رأس المال</button>
+    </div>
+
+    <div class="sec"><div class="sec-ico">💵</div><span class="sec-lbl">الرصيد النقدي</span><div class="sec-line"></div></div>
+    <div class="card card-glow">
+      <div style="font-size:.75rem;color:var(--dim);margin-bottom:12px;line-height:1.7">الرصيد النقدي المتاح لكل شريك — بيتحدث تلقائياً عند كل بيع وشراء.</div>
+      <div class="row2">
+        <div><div class="lbl" style="color:var(--amr2)">نقدي عمرو (ج)</div><input type="number" id="cash-amr-inp" class="inp" step="0.01"></div>
+        <div><div class="lbl" style="color:var(--yousef2)">نقدي يوسف (ج)</div><input type="number" id="cash-yousef-inp" class="inp" step="0.01"></div>
+      </div>
+      <button class="btn-primary" onclick="saveCashSettings()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        حفظ الرصيد النقدي
+      </button>
+    </div>
+
+    <div class="sec"><div class="sec-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="sec-lbl">إضافة سهم جديد</span><div class="sec-line"></div></div>
+    <div class="card card-glow">
+      <div class="row2">
+        <div><div class="lbl">رمز السهم</div><input type="text" id="ns-ticker" class="inp" placeholder="AMOC"></div>
+        <div><div class="lbl">اسم الشركة</div><input type="text" id="ns-name" class="inp" placeholder="اختياري..."></div>
+      </div>
+      <div class="lbl">الملكية</div>
+      <div class="opick-grid">
+        <div class="opick" id="ns-amr" onclick="selOwner('amr','ns')">👤 عمرو</div>
+        <div class="opick" id="ns-yousef" onclick="selOwner('yousef','ns')">👤 يوسف</div>
+        <div class="opick shared" id="ns-shared" onclick="selOwner('shared','ns')">👥 مشترك</div>
+      </div>
+      <input type="hidden" id="ns-owner" value="shared">
+      <div class="row2">
+        <div><div class="lbl">أسهم عمرو</div><input type="number" id="ns-aqty" class="inp" placeholder="0"></div>
+        <div><div class="lbl">أسهم يوسف</div><input type="number" id="ns-yqty" class="inp" placeholder="0"></div>
+      </div>
+      <div class="row2">
+        <div><div class="lbl">سعر الشراء</div><input type="number" id="ns-buy" class="inp" placeholder="0.00" step="0.01"></div>
+        <div><div class="lbl">السعر الحالي</div><input type="number" id="ns-price" class="inp" placeholder="0.00" step="0.01"></div>
+      </div>
+      <button class="btn-primary" onclick="addStock()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>إضافة السهم</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="fab" onclick="goPage('trades')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>صفقة جديدة</button>
+<div class="bnav"><div class="bnav-inner" id="bnav"></div></div>
+
+<script>
+/* ─── STATE ─── */
+const KEY = 'bpfinal2';
+const DEF = {
+  capital: { amr:51320, yousef:36178.10 },
+  cash: { amr: 12595.29, yousef: 22814.35 },
+  stocks: [
+    { id:1, ticker:'AMOC', name:'الإسكندرية للزيوت المعدنية',   amrQty:1661,  yousefQty:1661,  buyPrice:7.49,  price:8.81 },
+    { id:2, ticker:'MCRO', name:'ماكرو جروب للمستحضرات الطبية', amrQty:9244,  yousefQty:16780, buyPrice:1.41,  price:1.38 },
+    { id:3, ticker:'SKPC', name:'سيدى كرير للبتروكيماويات',      amrQty:1389,  yousefQty:0,     buyPrice:19.06, price:19.25 },
+    { id:4, ticker:'HELI', name:'مصر الجديدة للإسكان والتعمير',  amrQty:0,     yousefQty:54,    buyPrice:5.05,  price:5.20 },
+    { id:5, ticker:'أرباح',name:'ربح عنافة + HELI',             amrQty:0,     yousefQty:1,     buyPrice:0,     price:78.10 },
+  ],
+  archive: [], trades: [], transfers: [], notes: [], auditLog: [], nextId: 30
+};
+
+let S, undoStack = [], redoStack = [];
+
+function loadS() {
+  try {
+    const d = localStorage.getItem(KEY);
+    if (d) {
+      const p = JSON.parse(d);
+      S = { ...DEF, ...p,
+        stocks: p.stocks||DEF.stocks,
+        cash: p.cash || { amr: 27.00, yousef: 0.00 },
+        archive:p.archive||[], trades:p.trades||[],
+        transfers:p.transfers||[], notes:p.notes||[], auditLog:p.auditLog||[]
+      };
+    } else { S = JSON.parse(JSON.stringify(DEF)); }
+  } catch(e) { S = JSON.parse(JSON.stringify(DEF)); }
+}
+
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+
+function calcInvested() {
+  let amr = 0, yousef = 0;
+  S.stocks.forEach(s => { amr += s.amrQty * s.buyPrice; yousef += s.yousefQty * s.buyPrice; });
+  return { amr, yousef };
+}
+
+function calcCash() {
+  return {
+    amr:    (S.cash && S.cash.amr    != null) ? S.cash.amr    : 12595.29,
+    yousef: (S.cash && S.cash.yousef != null) ? S.cash.yousef : 0,
+  };
+}
+
+function snap() { return JSON.stringify(S); }
+function pushUndo(s) { undoStack.push(s); if(undoStack.length>60) undoStack.shift(); redoStack=[]; syncUR(); }
+function syncUR() { document.getElementById('undo-btn').disabled=!undoStack.length; document.getElementById('redo-btn').disabled=!redoStack.length; }
+function undoAct() { if(!undoStack.length) return; redoStack.push(snap()); S=JSON.parse(undoStack.pop()); save();renderAll();syncUR();showToast('تم التراجع','↩️'); }
+function redoAct() { if(!redoStack.length) return; undoStack.push(snap()); S=JSON.parse(redoStack.pop()); save();renderAll();syncUR();showToast('تم الإعادة','↪️'); }
+
+function addLog(type, desc, detail='') {
+  const n = new Date();
+  S.auditLog = S.auditLog||[];
+  S.auditLog.push({ id:S.nextId++, type, desc, detail, date:n.toLocaleDateString('ar-EG',{day:'numeric',month:'long',year:'numeric'}), time:n.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) });
+  if(S.auditLog.length>500) S.auditLog.shift();
+}
+
+let _cb = null;
+function showConfirm({ icoHtml='', icoCls='', title, msg, okCls='dbtn-danger', okLabel='تأكيد', okIco='', onOk }) {
+  const wrap = document.getElementById('dlg-ico-wrap');
+  wrap.className = 'dlg-ico-wrap ' + icoCls;
+  wrap.innerHTML = icoHtml;
+  document.getElementById('dlg-title').textContent = title;
+  document.getElementById('dlg-msg').innerHTML = msg;
+  const okBtn = document.getElementById('dlg-ok');
+  okBtn.className = 'dbtn ' + okCls;
+  okBtn.innerHTML = okIco + okLabel;
+  _cb = onOk;
+  document.getElementById('dlg-ov').classList.add('on');
+}
+function dlgConfirm() { document.getElementById('dlg-ov').classList.remove('on'); if(_cb){_cb();_cb=null;} }
+function dlgCancel()  { document.getElementById('dlg-ov').classList.remove('on'); _cb=null; }
+function showAlert(title,msg) { document.getElementById('alert-title').textContent=title; document.getElementById('alert-msg').innerHTML=msg; document.getElementById('alert-ov').classList.add('on'); }
+function closeAlert() { document.getElementById('alert-ov').classList.remove('on'); }
+document.getElementById('dlg-ov').addEventListener('click',e=>{if(e.target===document.getElementById('dlg-ov'))dlgCancel();});
+document.getElementById('alert-ov').addEventListener('click',e=>{if(e.target===document.getElementById('alert-ov'))closeAlert();});
+
+let _tt=null;
+function showToast(msg,ico='✅') {
+  const el=document.getElementById('toast');
+  document.getElementById('toast-ico').textContent=ico;
+  document.getElementById('toast-msg').textContent=msg;
+  el.classList.remove('hide');el.classList.add('show');
+  if(_tt)clearTimeout(_tt);
+  _tt=setTimeout(()=>{el.classList.remove('show');el.classList.add('hide');},2400);
+}
+
+const fmt  = (n,d=0) => { if(isNaN(n)||n==null) return '—'; return Math.abs(n).toLocaleString('ar-EG',{minimumFractionDigits:d,maximumFractionDigits:d}); };
+const fmtK = n => { const a=Math.abs(n); if(a>=1e6) return (n/1e6).toFixed(1)+'م'; if(a>=1e3) return (n/1e3).toFixed(1)+'ك'; return fmt(n,0); };
+const todayISO = () => new Date().toISOString().split('T')[0];
+const dFmt = d => d ? new Date(d).toLocaleDateString('ar-EG',{day:'numeric',month:'short'}) : '';
+
+function sc(s) {
+  const aC=s.amrQty*s.buyPrice, aV=s.amrQty*s.price;
+  const yC=s.yousefQty*s.buyPrice, yV=s.yousefQty*s.price;
+  return { amrCost:aC,amrVal:aV,amrPnl:aV-aC,yousefCost:yC,yousefVal:yV,yousefPnl:yV-yC,
+    totalQty:s.amrQty+s.yousefQty, totalVal:aV+yV, totalCost:aC+yC, totalPnl:(aV+yV)-(aC+yC) };
+}
+
+function totals() {
+  let aV=0,yV=0,aC=0,yC=0;
+  S.stocks.forEach(s=>{ const c=sc(s); aV+=c.amrVal; yV+=c.yousefVal; aC+=c.amrCost; yC+=c.yousefCost; });
+  return { amrVal:aV, yousefVal:yV, amrCost:aC, yousefCost:yC, total:aV+yV, totalCost:aC+yC, totalPnl:(aV+yV)-(aC+yC) };
+}
+
+function pnlHtml(v, large=false) {
+  const pos=v>=0;
+  const ico=pos
+    ?`<svg width="${large?14:11}" height="${large?14:11}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`
+    :`<svg width="${large?14:11}" height="${large?14:11}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>`;
+  return `<span class="${pos?'green':'red'}" style="display:inline-flex;align-items:center;gap:3px;font-weight:800;font-size:${large?'1.1rem':'inherit'}">${ico}<span class="mono">${pos?'+':'−'}${fmt(Math.abs(v),2)} ج</span></span>`;
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('on'); }
+function openModal(id)  { document.getElementById(id).classList.add('on'); }
+document.getElementById('sell-ov').addEventListener('click',e=>{if(e.target===document.getElementById('sell-ov'))closeModal('sell-ov');});
+document.getElementById('edit-ov').addEventListener('click',e=>{if(e.target===document.getElementById('edit-ov'))closeModal('edit-ov');});
+
+const PAGES = [
+  {id:'dash',label:'الرئيسية',ico:'📊'},{id:'stocks',label:'الأسهم',ico:'📈'},
+  {id:'trades',label:'الصفقات',ico:'🔄'},{id:'settle',label:'التسوية',ico:'⚖️'},
+  {id:'transfers',label:'التحويلات',ico:'💸'},{id:'notes',label:'الجلسات',ico:'📓'},
+  {id:'archive',label:'الأرشيف',ico:'🗃️'},{id:'log',label:'السجل',ico:'🕒'},
+  {id:'settings',label:'إعدادات',ico:'⚙️'},
+];
+const BNAV_PAGES = ['dash','stocks','trades','settle','transfers'];
+let curPage = 'dash';
+
+function buildNav() {
+  document.getElementById('topnav').innerHTML = PAGES.map(p=>
+    `<button class="npill${p.id===curPage?' on':''}" onclick="goPage('${p.id}')">${p.ico} ${p.label}</button>`
+  ).join('');
+  const bn = document.getElementById('bnav');
+  bn.innerHTML = BNAV_PAGES.map(id=>{
+    const p=PAGES.find(x=>x.id===id), on=id===curPage;
+    return `<button class="bnav-btn" onclick="goPage('${id}')"><div class="bnav-ico${on?' on':''}" style="color:${on?'var(--amr2)':'var(--dim)'}">${p.ico}</div><span class="bnav-lbl${on?' on':''}">${p.label}</span></button>`;
+  }).join('');
+  document.getElementById('fab').style.display = (curPage==='trades')?'none':'';
+}
+
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('page-'+id).classList.add('on');
+  curPage=id; buildNav(); window.scrollTo(0,0);
+}
+
+function selOwner(v,prefix) {
+  document.getElementById(prefix+'-owner').value=v;
+  ['amr','yousef','shared'].forEach(k=>{
+    const el=document.getElementById(`${prefix}-${k}`);
+    if(!el) return;
+    el.className='opick'+(k===v?' '+k:'');
+  });
+}
+
+let curMood='good';
+function selMood(m) {
+  curMood=m;
+  document.getElementById('note-mood').value=m;
+  const styles={good:'background:var(--green-dim);border-color:var(--green);color:var(--green)',neutral:'background:var(--orange-dim);border-color:var(--orange);color:var(--orange)',bad:'background:var(--red-dim);border-color:var(--red);color:var(--red)'};
+  ['good','neutral','bad'].forEach(k=>{const el=document.getElementById('mb-'+k);el.style.cssText=k===m?styles[k]:'';});
+}
+
+function saveCashSettings() {
+  const amr    = parseFloat(document.getElementById('cash-amr-inp').value);
+  const yousef = parseFloat(document.getElementById('cash-yousef-inp').value);
+  if(isNaN(amr) || isNaN(yousef)) { showAlert('رقم غلط','ادخل أرقام صحيحة!'); return; }
+  const sn = snap();
+  S.cash = { amr, yousef };
+  addLog('cash', `تعديل النقدي يدوياً`, `عمرو: ${amr} ج | يوسف: ${yousef} ج`);
+  pushUndo(sn); save(); renderAll(); showToast('تم حفظ الرصيد النقدي','💵');
+}
+
+let _sellId = null;
+function openSell(id) {
+  const s=S.stocks.find(x=>x.id===id); if(!s) return;
+  _sellId=id;
+  const c=sc(s);
+  const html=`
+    <div style="background:var(--bg3);border-radius:12px;padding:13px;margin-bottom:14px;border:1px solid var(--border2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+        <div><div style="font-size:1rem;font-weight:800">${s.ticker}</div><div style="font-size:.68rem;color:var(--dim)">${s.name||''}</div></div>
+        <div style="text-align:left"><div class="mono" style="font-size:.95rem;font-weight:700">${s.price} ج</div><div style="font-size:.65rem;color:var(--dim)">شراء: ${s.buyPrice} ج</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="sb sb-a"><div class="sb-name">👤 عمرو</div><div class="sb-qty">${fmt(s.amrQty)} سهم</div></div>
+        <div class="sb sb-y"><div class="sb-name">👤 يوسف</div><div class="sb-qty">${fmt(s.yousefQty)} سهم</div></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div><div class="lbl">كمية البيع</div><input type="number" id="sv-qty" class="inp" placeholder="${c.totalQty}" max="${c.totalQty}" value="${c.totalQty}" oninput="calcSellPrev()"></div>
+      <div><div class="lbl">سعر البيع</div><input type="number" id="sv-price" class="inp" placeholder="${s.price}" step="0.01" value="${s.price}" oninput="calcSellPrev()"></div>
+    </div>
+    <div class="row2">
+      <div><div class="lbl">العمولة (ج)</div><input type="number" id="sv-comm" class="inp" placeholder="0" step="0.01" value="0" oninput="calcSellPrev()"></div>
+      <div><div class="lbl">التاريخ</div><input type="date" id="sv-date" class="inp" value="${todayISO()}"></div>
+    </div>
+    <div><div class="lbl">ملاحظة</div><input type="text" id="sv-note" class="inp" placeholder="اختياري..."></div>
+    <div id="sv-prev"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px">
+      <button class="btn-ghost btn-sell" onclick="doSell(false)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>بيع فقط</button>
+      <button class="btn-ghost btn-archive" onclick="doSell(true)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>بيع وأرشفة</button>
+    </div>`;
+  document.getElementById('sell-content').innerHTML=html;
+  openModal('sell-ov');
+  setTimeout(calcSellPrev,50);
+}
+
+function calcSellPrev() {
+  const s=S.stocks.find(x=>x.id===_sellId); if(!s) return;
+  const qty=parseFloat(document.getElementById('sv-qty').value)||0;
+  const price=parseFloat(document.getElementById('sv-price').value)||0;
+  const comm=parseFloat(document.getElementById('sv-comm').value)||0;
+  const box=document.getElementById('sv-prev');
+  if(!qty||!price){if(box)box.innerHTML='';return;}
+  const gross=qty*price, net=gross-comm, pnl=net-qty*s.buyPrice;
+  const totalQty=s.amrQty+s.yousefQty;
+  const aRatio=totalQty>0?s.amrQty/totalQty:0.5, yRatio=1-aRatio;
+  const aQty=Math.round(qty*aRatio), yQty=qty-aQty;
+  const aNet=net*aRatio, yNet=net*yRatio;
+  const cash=calcCash();
+  const newAmrCash  = cash.amr    + aNet;
+  const newYousefCash = cash.yousef + yNet;
+  box.innerHTML=`<div class="preview-box">
+    <div class="preview-grid">
+      <div><div class="pv-lbl">الإجمالي</div><div class="pv-val mono">${fmt(gross,2)} ج</div></div>
+      <div><div class="pv-lbl">العمولة</div><div class="pv-val mono red">${fmt(comm,2)} ج</div></div>
+      <div><div class="pv-lbl">الصافي</div><div class="pv-val mono green">${fmt(net,2)} ج</div></div>
+    </div>
+    <div class="divider"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      <div class="sb sb-a" style="text-align:center">
+        <div class="sb-name" style="justify-content:center">👤 يرجع لعمرو</div>
+        <div class="sb-val">${fmt(aNet,2)} ج</div>
+        <div class="sb-qty">${fmt(aQty)} سهم (${(aRatio*100).toFixed(0)}%)</div>
+        <div style="font-size:.6rem;color:var(--dim);margin-top:4px">رصيده بعد البيع</div>
+        <div class="mono" style="font-size:.8rem;color:var(--green)">${fmt(newAmrCash,2)} ج</div>
+      </div>
+      <div class="sb sb-y" style="text-align:center">
+        <div class="sb-name" style="justify-content:center">👤 يرجع ليوسف</div>
+        <div class="sb-val">${fmt(yNet,2)} ج</div>
+        <div class="sb-qty">${fmt(yQty)} سهم (${(yRatio*100).toFixed(0)}%)</div>
+        <div style="font-size:.6rem;color:var(--dim);margin-top:4px">رصيده بعد البيع</div>
+        <div class="mono" style="font-size:.8rem;color:var(--green)">${fmt(newYousefCash,2)} ج</div>
+      </div>
+    </div>
+    <div style="text-align:center"><div style="font-size:.62rem;color:var(--dim);font-weight:700;margin-bottom:4px">ربح/خسارة الصفقة</div><div>${pnlHtml(pnl,true)}</div>${pnl<0?`<div style="font-size:.72rem;color:var(--orange);margin-top:5px">⚠️ بيع بخسارة</div>`:''}</div>
+  </div>`;
+}
+
+function doSell(archive) {
+  const s=S.stocks.find(x=>x.id===_sellId); if(!s) return;
+  const qty=parseFloat(document.getElementById('sv-qty').value)||0;
+  const price=parseFloat(document.getElementById('sv-price').value)||0;
+  const comm=parseFloat(document.getElementById('sv-comm').value)||0;
+  const note=document.getElementById('sv-note').value||'';
+  const date=document.getElementById('sv-date').value||todayISO();
+  if(!qty||qty<=0){showAlert('كمية غلط','ادخل الكمية!');return;}
+  const totalQty=s.amrQty+s.yousefQty;
+  if(qty>totalQty){showAlert('كمية كبيرة',`أقصى كمية: <strong>${totalQty}</strong> سهم`);return;}
+  const gross=qty*price, net=gross-comm, pnl=net-qty*s.buyPrice;
+  const aRatio=totalQty>0?s.amrQty/totalQty:0.5, yRatio=1-aRatio;
+  const aQty=Math.round(qty*aRatio), yQty=qty-aQty;
+  const aNet=net*aRatio, yNet=net*yRatio;
+  showConfirm({
+    icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>`,
+    icoCls:'style="background:var(--red-dim);border:1px solid var(--red-bdr)"',
+    title:archive?'تأكيد البيع والأرشفة':'تأكيد البيع',
+    msg:`هتبيع <strong>${fmt(qty)} سهم ${s.ticker}</strong> بـ <strong>${price} ج</strong><br><br><span style="color:var(--amr2)">يرجع لعمرو: ${fmt(aNet,2)} ج</span><br><span style="color:var(--yousef2)">يرجع ليوسف: ${fmt(yNet,2)} ج</span><br><br><span class="${pnl>=0?'green':'red'}" style="font-weight:800">${pnl>=0?'ربح':'خسارة'}: ${pnl>=0?'+':'−'}${fmt(Math.abs(pnl),2)} ج</span>${archive?'<br><br><span style="color:var(--purple)">سيتم أرشفة السهم</span>':''}`,
+    okCls:'dbtn-sell',
+    okIco:`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>`,
+    okLabel:archive?' بيع وأرشفة':' تأكيد البيع',
+    onOk:()=>{
+      const sn=snap();
+      S.cash = S.cash || { amr:0, yousef:0 };
+      S.cash.amr    = (S.cash.amr    || 0) + aNet;
+      S.cash.yousef = (S.cash.yousef || 0) + yNet;
+      S.trades.push({id:S.nextId++,type:'sell',date,ticker:s.ticker,who:'shared',qty,price,commAmt:comm,gross,net,pnl,aQty,yQty,aNet,yNet,note,time:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});
+      const newAQty=s.amrQty-aQty, newYQty=s.yousefQty-yQty;
+      const fullySold=newAQty<=0&&newYQty<=0;
+      if(archive||fullySold){
+        S.archive.push({...s,soldAt:price,soldDate:date,soldAQty:aQty,soldYQty:yQty,aReturn:aNet,yReturn:yNet,totalPnl:pnl,commAmt:comm});
+        S.stocks=S.stocks.filter(x=>x.id!==s.id);
+        addLog('archive',`أرشفة ${s.ticker}`,`ر/خ: ${pnl>=0?'+':'−'}${fmt(Math.abs(pnl),2)} ج`);
+      } else {
+        S.stocks=S.stocks.map(x=>x.id===s.id?{...x,amrQty:Math.max(0,newAQty),yousefQty:Math.max(0,newYQty)}:x);
+      }
+      addLog('sell',`بيع ${qty} سهم ${s.ticker} بـ ${price} ج`,`صافي: ${fmt(net,2)} ج | عمرو: +${fmt(aNet,2)} ج | يوسف: +${fmt(yNet,2)} ج | ر/خ: ${pnl>=0?'+':'−'}${fmt(Math.abs(pnl),2)} ج`);
+      pushUndo(sn);save();closeModal('sell-ov');renderAll();
+      showToast(`تم البيع${archive?' والأرشفة':''}`,pnl>=0?'💰':'📉');
+    }
+  });
+}
+
+function calcBuyPrev() {
+  const qty=parseFloat(document.getElementById('tr-qty').value)||0;
+  const price=parseFloat(document.getElementById('tr-price').value)||0;
+  const comm=parseFloat(document.getElementById('tr-comm').value)||0;
+  const who=document.getElementById('tr-who').value||'amr';
+  const box=document.getElementById('buy-prev');
+  if(!qty||!price){box.style.display='none';return;}
+  const gross=qty*price, net=gross+comm;
+  const cash=calcCash();
+  const av=who==='amr'?cash.amr:who==='yousef'?cash.yousef:cash.amr+cash.yousef;
+  const whoLabel=who==='amr'?'عمرو':who==='yousef'?'يوسف':'الشركاء';
+  const ok=net<=av;
+  box.style.display='block';
+  document.getElementById('buy-prev-grid').innerHTML=`
+    <div><div class="pv-lbl">الإجمالي</div><div class="pv-val mono">${fmt(gross,2)} ج</div></div>
+    <div><div class="pv-lbl">العمولة</div><div class="pv-val mono red">${fmt(comm,2)} ج</div></div>
+    <div><div class="pv-lbl">التكلفة الكلية</div><div class="pv-val mono ${ok?'green':'red'}">${fmt(net,2)} ج</div></div>`;
+  document.getElementById('buy-bal-info').innerHTML=ok
+    ?`<span class="green">✓ متاح لـ${whoLabel}: <span class="mono">${fmt(av,2)} ج</span> — كافي</span>`
+    :`<span class="red">⚠️ متاح لـ${whoLabel}: <span class="mono">${fmt(av,2)} ج</span> — عجز <span class="mono">${fmt(net-av,2)} ج</span></span>`;
+}
+
+function saveBuy() {
+  const ticker=(document.getElementById('tr-ticker').value||'').trim().toUpperCase();
+  const qty=parseFloat(document.getElementById('tr-qty').value)||0;
+  const price=parseFloat(document.getElementById('tr-price').value)||0;
+  if(!ticker||!qty||!price){showAlert('بيانات ناقصة','ادخل الرمز والكمية والسعر!');return;}
+  const comm=parseFloat(document.getElementById('tr-comm').value)||0;
+  const who=document.getElementById('tr-who').value||'amr';
+  const note=document.getElementById('tr-note').value||'';
+  const date=document.getElementById('tr-date').value||todayISO();
+  const gross=qty*price, net=gross+comm;
+  const cash=calcCash();
+  const av=who==='amr'?cash.amr:who==='yousef'?cash.yousef:cash.amr+cash.yousef;
+  const whoLabel=who==='amr'?'عمرو':who==='yousef'?'يوسف':'الشركاء';
+  const confirmAndSave=()=>{
+    const sn=snap();
+    S.cash = S.cash || { amr:0, yousef:0 };
+    if(who==='amr')         S.cash.amr    = (S.cash.amr    || 0) - net;
+    else if(who==='yousef') S.cash.yousef = (S.cash.yousef || 0) - net;
+    else {
+      const total = S.capital.amr + S.capital.yousef;
+      const aR = total > 0 ? S.capital.amr / total : 0.5;
+      S.cash.amr    = (S.cash.amr    || 0) - net * aR;
+      S.cash.yousef = (S.cash.yousef || 0) - net * (1 - aR);
+    }
+    S.trades.push({id:S.nextId++,type:'buy',date,ticker,who,qty,price,commAmt:comm,gross,net,note,time:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});
+    addLog('buy',`شراء ${qty} سهم ${ticker} بـ ${price} ج`,`منفذ: ${whoLabel} | صافي: ${fmt(net,2)} ج`);
+    pushUndo(sn);save();
+    document.getElementById('tr-ticker').value='';document.getElementById('tr-qty').value='';document.getElementById('tr-price').value='';document.getElementById('tr-note').value='';
+    document.getElementById('buy-prev').style.display='none';
+    renderAll();showToast(`تم تسجيل الشراء: ${ticker}`,'🛒');
+  };
+  if(net>av){
+    showConfirm({
+      icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+      icoCls:'style="background:var(--orange-dim);border:1px solid var(--orange-bdr)"',
+      title:'رصيد غير كافٍ',
+      msg:`رصيد <strong>${whoLabel}</strong> المتاح: <strong>${fmt(av,2)} ج</strong><br>التكلفة: <strong>${fmt(net,2)} ج</strong><br>العجز: <strong class="red">${fmt(net-av,2)} ج</strong><br><br>تريد تسجيل الشراء رغم ذلك؟`,
+      okCls:'dbtn-ok',
+      okIco:`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+      okLabel:' تسجيل رغم ذلك',
+      onOk:confirmAndSave
+    });
+  } else { confirmAndSave(); }
+}
+
+function deleteTrade(id) {
+  showConfirm({
+    icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`,
+    icoCls:'style="background:var(--red-dim);border:1px solid var(--red-bdr)"',
+    title:'حذف المعاملة',msg:'هتحذف المعاملة دي؟',
+    okCls:'dbtn-danger',okIco:'',okLabel:'حذف',
+    onOk:()=>{const sn=snap();S.trades=S.trades.filter(t=>t.id!==id);addLog('edit','حذف معاملة','');pushUndo(sn);save();renderAll();showToast('تم الحذف','🗑️');}
+  });
+}
+
+function updatePrice(id,newPrice) {
+  if(!newPrice||newPrice<=0){showAlert('سعر غلط','ادخل سعر صحيح!');return;}
+  const s=S.stocks.find(x=>x.id===id); if(!s) return;
+  const sn=snap();
+  S.stocks=S.stocks.map(x=>x.id===id?{...x,price:newPrice}:x);
+  addLog('price',`تحديث سعر ${s.ticker} من ${s.price} إلى ${newPrice} ج`,'');
+  pushUndo(sn);save();renderAll();showToast(`تم تحديث ${s.ticker}`,'📊');
+}
+
+function openEdit(id) {
+  const s=S.stocks.find(x=>x.id===id); if(!s) return;
+  document.getElementById('em-id').value=id;
+  document.getElementById('em-ticker').value=s.ticker;
+  document.getElementById('em-name').value=s.name||'';
+  document.getElementById('em-aqty').value=s.amrQty;
+  document.getElementById('em-yqty').value=s.yousefQty;
+  document.getElementById('em-buy').value=s.buyPrice;
+  document.getElementById('em-price').value=s.price;
+  selOwner(s.owner||'shared','em');
+  openModal('edit-ov');
+}
+function saveEdit() {
+  const id=parseInt(document.getElementById('em-id').value);
+  const s=S.stocks.find(x=>x.id===id); if(!s) return;
+  const ticker=(document.getElementById('em-ticker').value||'').trim().toUpperCase();
+  const name=document.getElementById('em-name').value||'';
+  const aqty=parseFloat(document.getElementById('em-aqty').value)||0;
+  const yqty=parseFloat(document.getElementById('em-yqty').value)||0;
+  const buy=parseFloat(document.getElementById('em-buy').value)||0;
+  const price=parseFloat(document.getElementById('em-price').value)||0;
+  const owner=document.getElementById('em-owner').value||'shared';
+  if(!ticker||!price){showAlert('بيانات ناقصة','ادخل الرمز والسعر!');return;}
+  const sn=snap();
+  S.stocks=S.stocks.map(x=>x.id===id?{...x,ticker,name,amrQty:aqty,yousefQty:yqty,buyPrice:buy,price,owner}:x);
+  addLog('edit',`تعديل سهم ${ticker}`,`سعر: ${price} ج | عمرو: ${aqty} | يوسف: ${yqty}`);
+  pushUndo(sn);save();closeModal('edit-ov');renderAll();showToast(`تم تعديل ${ticker}`,'✏️');
+}
+
+function addStock() {
+  const ticker=(document.getElementById('ns-ticker').value||'').trim().toUpperCase();
+  const price=parseFloat(document.getElementById('ns-price').value)||0;
+  if(!ticker||!price){showAlert('بيانات ناقصة','ادخل الرمز والسعر!');return;}
+  const sn=snap();
+  S.stocks.push({id:S.nextId++,ticker,name:document.getElementById('ns-name').value||'',owner:document.getElementById('ns-owner').value||'shared',amrQty:parseFloat(document.getElementById('ns-aqty').value)||0,yousefQty:parseFloat(document.getElementById('ns-yqty').value)||0,buyPrice:parseFloat(document.getElementById('ns-buy').value)||0,price});
+  addLog('edit',`إضافة سهم ${ticker}`,`سعر: ${price} ج`);
+  pushUndo(sn);save();
+  ['ns-ticker','ns-name','ns-aqty','ns-yqty','ns-buy','ns-price'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  renderAll();goPage('stocks');showToast(`تمت إضافة ${ticker}`,'➕');
+}
+
+function saveCapital() {
+  const amr=parseFloat(document.getElementById('cap-amr').value)||0;
+  const yousef=parseFloat(document.getElementById('cap-yousef').value)||0;
+  if(!amr||!yousef){showAlert('بيانات غلط','ادخل رأسمال كل شريك!');return;}
+  showConfirm({
+    icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--yousef)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    icoCls:'style="background:var(--yousef-dim);border:1px solid var(--yousef-bdr)"',
+    title:'تحديث رأس المال',
+    msg:`عمرو: <strong>${fmt(amr)} ج</strong><br>يوسف: <strong>${fmt(yousef)} ج</strong>`,
+    okCls:'dbtn-ok',
+    okIco:`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+    okLabel:' حفظ',
+    onOk:()=>{
+      const sn=snap();S.capital={amr,yousef};
+      addLog('capital','تحديث رأس المال',`عمرو: ${fmt(amr)} ج | يوسف: ${fmt(yousef)} ج`);
+      pushUndo(sn);save();renderAll();showToast('تم حفظ رأس المال','💰');
+    }
+  });
+}
+
+function addTransfer() {
+  const amt=parseFloat(document.getElementById('tf-amt').value)||0;
+  if(!amt){showAlert('مبلغ غلط','ادخل المبلغ!');return;}
+  const dir=document.getElementById('tf-dir').value||'y2a';
+  const date=document.getElementById('tf-date').value||todayISO();
+  const note=document.getElementById('tf-note').value||'';
+  const sn=snap();
+  S.transfers.push({id:S.nextId++,dir,amt,date,note});
+  addLog('transfer',`تحويل ${fmt(amt)} ج`,dir==='y2a'?'يوسف → عمرو':'عمرو → يوسف');
+  pushUndo(sn);save();document.getElementById('tf-amt').value='';document.getElementById('tf-note').value='';renderAll();showToast('تم التسجيل','💸');
+}
+function deleteTransfer(id) {
+  showConfirm({
+    icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`,
+    icoCls:'style="background:var(--red-dim);border:1px solid var(--red-bdr)"',
+    title:'حذف التحويل',msg:'هتحذف التحويل ده؟',
+    okCls:'dbtn-danger',okIco:'',okLabel:'حذف',
+    onOk:()=>{const sn=snap();S.transfers=S.transfers.filter(t=>t.id!==id);pushUndo(sn);save();renderAll();showToast('تم الحذف','🗑️');}
+  });
+}
+
+function saveNote() {
+  const text=(document.getElementById('note-text').value||'').trim();
+  if(!text){showAlert('ملاحظة فارغة','اكتب حاجة!');return;}
+  const sn=snap();
+  S.notes.push({id:S.nextId++,date:document.getElementById('note-date').value||todayISO(),mood:curMood,text});
+  addLog('edit',`إضافة جلسة ${dFmt(document.getElementById('note-date').value||todayISO())}`,text.slice(0,50));
+  pushUndo(sn);save();document.getElementById('note-text').value='';renderAll();showToast('تم حفظ الجلسة','📓');
+}
+function deleteNote(id) {
+  showConfirm({
+    icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`,
+    icoCls:'style="background:var(--red-dim);border:1px solid var(--red-bdr)"',
+    title:'حذف الجلسة',msg:'هتحذف الجلسة دي؟',
+    okCls:'dbtn-danger',okIco:'',okLabel:'حذف',
+    onOk:()=>{const sn=snap();S.notes=S.notes.filter(n=>n.id!==id);pushUndo(sn);save();renderAll();showToast('تم الحذف','🗑️');}
+  });
+}
+
+let _tradeFilter='all', _logFilter='all';
+
+function renderAll() {
+  renderTicker(); renderDash(); renderStocks(); renderTrades();
+  renderSettle(); renderTransfers(); renderNotes(); renderArchive();
+  renderLog(); renderSettings();
+}
+
+function renderTicker() {
+  const items=[...S.stocks,...S.stocks].map(s=>{
+    const pct=s.buyPrice>0?(s.price-s.buyPrice)/s.buyPrice*100:0;
+    return `<div class="ticker-item"><span class="t-sym mono">${s.ticker}</span><span class="t-price mono">${s.price} ج</span><span class="t-chg ${pct>=0?'green':'red'}">${pct>=0?'▲':'▼'}${Math.abs(pct).toFixed(2)}%</span></div>`;
+  }).join('');
+  document.getElementById('ticker').innerHTML=`<div class="ticker-inner">${items}</div>`;
+}
+
+function renderDash() {
+  const t=totals();
+  const cap=S.capital.amr+S.capital.yousef;
+  const pct=cap>0?t.totalPnl/cap*100:0;
+
+  const amrPnl = t.amrVal - t.amrCost;
+  const yPnl   = t.yousefVal - t.yousefCost;
+
+  document.getElementById('d-total').innerHTML=`${fmtK(t.total)}<span style="font-size:1.1rem;color:var(--dim);margin-right:3px">ج</span>`;
+  document.getElementById('d-pnl').innerHTML=pnlHtml(t.totalPnl,true);
+  document.getElementById('d-pct').innerHTML=`<span class="${pct>=0?'green':'red'}">${pct>=0?'+':''}${pct.toFixed(2)}%</span>`;
+  document.getElementById('d-bar').style.width=`${Math.min(100,Math.max(5,50+pct*2))}%`;
+  document.getElementById('d-cap').textContent=fmtK(cap)+' ج';
+  document.getElementById('d-range').textContent=`${fmt(cap,0)} ← ${fmt(t.total,0)} ج`;
+
+  const cash = calcCash();
+  document.getElementById('d-partners').innerHTML=[
+    {name:'عمرو',val:t.amrVal,pnl:amrPnl,cash:cash.amr,cls:'pcard-amr',col:'--amr',col2:'--amr2'},
+    {name:'يوسف',val:t.yousefVal,pnl:yPnl,cash:cash.yousef,cls:'pcard-yousef',col:'--yousef',col2:'--yousef2'},
+  ].map(p=>`
+    <div class="pcard ${p.cls}">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px">
+        <div style="width:28px;height:28px;border-radius:8px;background:var(${p.col}-dim);border:1px solid var(${p.col}-bdr);display:flex;align-items:center;justify-content:center;font-size:.9rem">👤</div>
+        <div><div style="font-size:.58rem;color:var(${p.col});font-weight:800;letter-spacing:1px;text-transform:uppercase">شريك</div><div style="font-size:.8rem;font-weight:800;line-height:1.2">${p.name}</div></div>
+      </div>
+      <div style="font-size:.6rem;color:var(--dim);margin-bottom:3px">قيمة المحفظة</div>
+      <div class="mono" style="font-size:1.2rem;font-weight:700;color:var(${p.col2});margin-bottom:4px">${fmt(p.val,2)} ج</div>
+      <div style="font-size:.62rem;color:var(--dim);margin-bottom:3px">ربح/خسارة الأسهم</div>
+      ${pnlHtml(p.pnl)}
+      <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--border)">
+        <span style="font-size:.6rem;color:var(--dim)">💵 متاح للشراء</span>
+        <span class="mono" style="font-size:.68rem;color:var(--green);font-weight:700">${fmt(p.cash,2)} ج</span>
+      </div>
+    </div>`).join('');
+
+  // ═══ COST SUMMARY ═══
+  var costHtml = '';
+  var pDefs = [
+    {name:'عمرو', col:'--amr', col2:'--amr2', qtyKey:'amrQty'},
+    {name:'يوسف', col:'--yousef', col2:'--yousef2', qtyKey:'yousefQty'},
+  ];
+  for (var pi = 0; pi < pDefs.length; pi++) {
+    var pd = pDefs[pi];
+    var rows = S.stocks.filter(function(s){ return s[pd.qtyKey] > 0; });
+    var totalCost = 0;
+    for (var ri = 0; ri < rows.length; ri++) {
+      totalCost += rows[ri][pd.qtyKey] * rows[ri].buyPrice;
+    }
+    var rowsHtml = '';
+    for (var ri2 = 0; ri2 < rows.length; ri2++) {
+      var s2 = rows[ri2];
+      var cost = s2[pd.qtyKey] * s2.buyPrice;
+      rowsHtml += '<tr style="border-bottom:1px solid var(--border)">'
+        + '<td style="padding:6px 0;font-weight:800;color:var(' + pd.col2 + ')" class="mono">' + s2.ticker + '</td>'
+        + '<td style="padding:6px 0;text-align:center;color:var(--white)" class="mono">' + fmt(s2[pd.qtyKey],0) + '</td>'
+        + '<td style="padding:6px 0;text-align:center;color:var(--dim)" class="mono">' + s2.buyPrice + ' ج</td>'
+        + '<td style="padding:6px 0;text-align:left;color:var(--white)" class="mono">' + fmt(cost,2) + ' ج</td>'
+        + '</tr>';
+    }
+    costHtml += '<div class="card" style="margin-bottom:10px;padding:12px 15px;border:1px solid var(' + pd.col + '-bdr);background:linear-gradient(145deg,var(' + pd.col + '-dim),var(--bg2))">'
+      + '<div style="font-size:.72rem;font-weight:800;color:var(' + pd.col2 + ');margin-bottom:10px">👤 ' + pd.name + '</div>'
+      + '<table style="width:100%;border-collapse:collapse;font-size:.68rem">'
+      + '<thead><tr style="color:var(--dim);border-bottom:1px solid var(--border2)">'
+      + '<th style="text-align:right;padding:4px 0;font-weight:700">السهم</th>'
+      + '<th style="text-align:center;padding:4px 0;font-weight:700">الكمية</th>'
+      + '<th style="text-align:center;padding:4px 0;font-weight:700">سعر الشراء</th>'
+      + '<th style="text-align:left;padding:4px 0;font-weight:700">التكلفة</th>'
+      + '</tr></thead>'
+      + '<tbody>' + rowsHtml + '</tbody>'
+      + '<tfoot><tr>'
+      + '<td colspan="3" style="padding-top:8px;font-size:.7rem;font-weight:800;color:var(--dim)">إجمالي التكلفة</td>'
+      + '<td style="padding-top:8px;text-align:left;font-weight:800;font-size:.82rem;color:var(' + pd.col2 + ')" class="mono">' + fmt(totalCost,2) + ' ج</td>'
+      + '</tr></tfoot>'
+      + '</table></div>';
+  }
+  document.getElementById('d-cost-summary').innerHTML = costHtml;
+
+  // ═══ ACTIVE STOCKS LIST (BUG FIX: was `?S.stocks.map` — missing assignment) ═══
+  document.getElementById('d-stocks').innerHTML = S.stocks.length ?
+    S.stocks.map((s,i)=>{
+      const c=sc(s);
+      const pct=s.buyPrice>0?(s.price-s.buyPrice)/s.buyPrice*100:0;
+      const amrPct=c.totalQty>0?s.amrQty/c.totalQty*100:50;
+      return `<div class="scard fu${Math.min(i+1,4)}" style="display:flex;justify-content:space-between;align-items:center;padding:13px 15px">
+        <div style="display:flex;align-items:center;gap:11px">
+          <div class="sticker"><span class="mono" style="font-size:.55rem;font-weight:800;color:var(--yousef2)">${s.ticker.slice(0,4)}</span></div>
+          <div>
+            <div style="font-weight:800;font-size:.9rem">${s.ticker}</div>
+            <div style="font-size:.62rem;color:var(--dim);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.name}</div>
+            <div style="height:3px;border-radius:2px;background:var(--bg4);overflow:hidden;display:flex;width:50px;margin-top:4px">
+              <div style="width:${amrPct}%;background:var(--amr);border-radius:2px"></div>
+              <div style="width:${100-amrPct}%;background:var(--yousef);border-radius:2px"></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:left">
+          <div class="mono" style="font-size:.92rem;font-weight:700">${s.price} ج</div>
+          <div class="${pct>=0?'green':'red'} mono" style="font-size:.7rem;margin-top:2px">${pct>=0?'▲':'▼'}${Math.abs(pct).toFixed(1)}%</div>
+          <div class="mono ${c.totalPnl>=0?'green':'red'}" style="font-size:.68rem;margin-top:2px">${c.totalPnl>=0?'+':'−'}${fmt(Math.abs(c.totalPnl),0)} ج</div>
+        </div>
+      </div>`;
+    }).join('')
+    : `<div class="empty">📉<span>مفيش أسهم نشطة</span></div>`;
+}
+
+function renderStocks() {
+  document.getElementById('stocks-list').innerHTML=!S.stocks.length?`<div class="empty">📉<span>مفيش أسهم — أضف من الإعدادات</span></div>`:S.stocks.map((s,i)=>{
+    const c=sc(s);
+    const pct=s.buyPrice>0?(s.price-s.buyPrice)/s.buyPrice*100:0;
+    const amrPct=c.totalQty>0?s.amrQty/c.totalQty*100:50;
+    const barCol=pct>=0?'var(--green)':pct<0?'var(--red)':'var(--dim)';
+    return `<div class="scard fu${Math.min(i+1,4)}">
+      <div class="scard-bar" style="background:linear-gradient(180deg,${barCol},transparent)"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:13px;padding-right:7px">
+        <div style="display:flex;align-items:center;gap:11px">
+          <div class="sticker"><span class="mono" style="font-size:.58rem;font-weight:800;color:var(--yousef2)">${s.ticker.slice(0,4)}</span></div>
+          <div><div style="font-size:1rem;font-weight:800">${s.ticker}</div><div style="font-size:.65rem;color:var(--dim);margin-top:2px">${s.name}</div></div>
+        </div>
+        <div style="text-align:left">
+          <div class="mono" style="font-size:1.05rem;font-weight:700">${s.price} ج</div>
+          <div class="${pct>=0?'green':'red'} mono" style="font-size:.7rem;margin-top:3px">${pct>=0?'▲':'▼'}${Math.abs(pct).toFixed(2)}%</div>
+        </div>
+      </div>
+      <div class="own-bar-labels">
+        <span style="color:var(--amr2);display:flex;align-items:center;gap:3px"><span style="width:6px;height:6px;border-radius:50%;background:var(--amr);display:inline-block"></span>عمرو ${amrPct.toFixed(0)}%</span>
+        <span style="color:var(--yousef2);display:flex;align-items:center;gap:3px">يوسف ${(100-amrPct).toFixed(0)}%<span style="width:6px;height:6px;border-radius:50%;background:var(--yousef);display:inline-block"></span></span>
+      </div>
+      <div class="own-bar"><div class="own-bar-a" style="width:${amrPct}%"></div><div class="own-bar-y" style="width:${100-amrPct}%"></div></div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-lbl">الكمية</div><div class="stat-val mono">${fmt(c.totalQty)}</div></div>
+        <div class="stat-box"><div class="stat-lbl">الشراء</div><div class="stat-val mono">${s.buyPrice}</div></div>
+        <div class="stat-box"><div class="stat-lbl">القيمة</div><div class="stat-val mono">${fmtK(c.totalVal)}</div></div>
+        <div class="stat-box"><div class="stat-lbl">ر/خ</div><div class="stat-val mono ${c.totalPnl>=0?'green':'red'}">${c.totalPnl>=0?'+':'−'}${fmt(Math.abs(c.totalPnl),0)}</div></div>
+      </div>
+      <div class="split-grid">
+        <div class="sb sb-a"><div class="sb-name">👤 عمرو</div><div class="sb-qty">${fmt(s.amrQty)} سهم</div><div class="sb-val">${fmt(c.amrVal,2)} ج</div>${pnlHtml(c.amrPnl)}</div>
+        <div class="sb sb-y"><div class="sb-name">👤 يوسف</div><div class="sb-qty">${fmt(s.yousefQty)} سهم</div><div class="sb-val">${fmt(c.yousefVal,2)} ج</div>${pnlHtml(c.yousefPnl)}</div>
+      </div>
+      <div class="price-row">
+        <input type="number" class="price-inp" id="pi-${s.id}" value="${s.price}" step="0.01" placeholder="سعر جديد...">
+        <button class="btn-price" onclick="updatePrice(${s.id},parseFloat(document.getElementById('pi-${s.id}').value))">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 11 16 11"/><polyline points="1 20 1 13 8 13"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 11M1 13l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          تحديث
+        </button>
+      </div>
+      <div class="stock-actions">
+        <button class="btn-ghost btn-edit" onclick="openEdit(${s.id})" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>تعديل</button>
+        <button class="btn-ghost btn-sell" onclick="openSell(${s.id})" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>بيع</button>
+        <button class="btn-ghost btn-archive" onclick="archiveStock(${s.id})" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>أرشفة</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function archiveStock(id) {
+  const s=S.stocks.find(x=>x.id===id); if(!s) return;
+  showConfirm({
+    icoHtml:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>`,
+    icoCls:'style="background:var(--purple-dim);border:1px solid var(--purple-bdr)"',
+    title:'أرشفة السهم',msg:`هتأرشف <strong>${s.ticker}</strong> بدون تسجيل بيع`,
+    okCls:'dbtn-archive',
+    okIco:`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/></svg>`,
+    okLabel:' أرشفة',
+    onOk:()=>{
+      const sn=snap();
+      S.archive.push({...s,soldAt:s.price,soldDate:todayISO(),soldAQty:s.amrQty,soldYQty:s.yousefQty,aReturn:0,yReturn:0,totalPnl:null,commAmt:0,manualArchive:true});
+      S.stocks=S.stocks.filter(x=>x.id!==id);
+      addLog('archive',`أرشفة يدوية: ${s.ticker}`,'');
+      pushUndo(sn);save();renderAll();showToast(`تمت أرشفة ${s.ticker}`,'🗃️');
+    }
+  });
+}
+
+function renderTrades() {
+  const filtered=_tradeFilter==='all'?[...S.trades].reverse():[...S.trades].filter(t=>t.type===_tradeFilter).reverse();
+  const totalBuy=S.trades.filter(t=>t.type==='buy').reduce((a,t)=>a+t.net,0);
+  const totalSell=S.trades.filter(t=>t.type==='sell').reduce((a,t)=>a+t.net,0);
+  const totalComm=S.trades.reduce((a,t)=>a+t.commAmt,0);
+  document.getElementById('trades-sum').innerHTML=[
+    {l:'إجمالي البيع',v:totalSell,cls:'green',bg:'var(--green-dim)',bdr:'var(--green-bdr)'},
+    {l:'إجمالي الشراء',v:totalBuy,cls:'red',bg:'var(--red-dim)',bdr:'var(--red-bdr)'},
+    {l:'العمولات',v:totalComm,cls:'',bg:'var(--orange-dim)',bdr:'var(--orange-bdr)'},
+  ].map(x=>`<div style="border-radius:11px;padding:13px 8px;text-align:center;background:${x.bg};border:1px solid ${x.bdr}"><div style="font-size:.6rem;color:var(--dim);font-weight:700;margin-bottom:4px">${x.l}</div><div class="mono ${x.cls}" style="font-size:.9rem;font-weight:700">${fmt(x.v,0)} ج</div></div>`).join('');
+  document.getElementById('trades-list').innerHTML=!filtered.length?`<div class="empty">📭<span>مفيش معاملات</span></div>`:filtered.map(t=>`
+    <div class="tcard" style="border:1px solid ${t.type==='buy'?'rgba(0,230,118,.13)':'rgba(255,77,109,.13)'}">
+      <div class="tcard-bar" style="background:${t.type==='buy'?'var(--green)':'var(--red)'}"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="tbadge ${t.type==='buy'?'tbuy':'tsell'}">${t.type==='buy'?'▲ شراء':'▼ بيع'}</span>
+          <span style="font-size:.95rem;font-weight:800">${t.ticker}</span>
+          <span style="font-size:.68rem;color:var(--dim)">${t.who==='amr'?'👤عمرو':t.who==='yousef'?'👤يوسف':'👥مشترك'}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:.67rem;color:var(--dim)">${dFmt(t.date)}</span>
+          <button onclick="deleteTrade(${t.id})" style="width:26px;height:26px;border-radius:7px;background:transparent;border:1px solid transparent;color:var(--dim);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;font-size:.8rem" onmouseover="this.style.background='var(--red-dim)';this.style.borderColor='var(--red-bdr)';this.style.color='var(--red)'" onmouseout="this.style.background='transparent';this.style.borderColor='transparent';this.style.color='var(--dim)'">✕</button>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-lbl">الكمية</div><div class="stat-val mono">${fmt(t.qty)}</div></div>
+        <div class="stat-box"><div class="stat-lbl">السعر</div><div class="stat-val mono">${t.price}</div></div>
+        <div class="stat-box"><div class="stat-lbl">العمولة</div><div class="stat-val mono red">${fmt(t.commAmt,2)}</div></div>
+        <div class="stat-box"><div class="stat-lbl">الصافي</div><div class="stat-val mono ${t.type==='buy'?'red':'green'}">${fmt(t.net,2)}</div></div>
+      </div>
+      ${t.type==='sell'&&t.pnl!=null?`<div style="background:${t.pnl>=0?'var(--green-dim)':'var(--red-dim)'};border:1px solid ${t.pnl>=0?'var(--green-bdr)':'var(--red-bdr)'};border-radius:9px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;margin-top:6px"><span style="font-size:.7rem;color:var(--dim);font-weight:700">عمرو ← ${fmt(t.aNet,2)} ج | يوسف ← ${fmt(t.yNet,2)} ج</span>${pnlHtml(t.pnl)}</div>`:''}
+      ${t.note?`<div style="font-size:.7rem;color:var(--dim);margin-top:7px;display:flex;align-items:center;gap:4px">📝 ${t.note}</div>`:''}
+    </div>`).join('');
+}
+
+function filterTrades(f,el) { _tradeFilter=f; document.querySelectorAll('#trades-filters .fbtn').forEach(b=>b.classList.remove('on')); el.classList.add('on'); renderTrades(); }
+
+function renderSettle() {
+  const t=totals();
+  const cash=calcCash();
+  const amrPnl=t.amrVal-t.amrCost;
+  const yPnl=t.yousefVal-t.yousefCost;
+  document.getElementById('settle-partners').innerHTML=[
+    {name:'عمرو البحراوي',stocksVal:t.amrVal,cash:cash.amr,pnl:amrPnl,cap:S.capital.amr,cls:'settle-amr',col:'--amr',col2:'--amr2'},
+    {name:'يوسف أصلان',stocksVal:t.yousefVal,cash:cash.yousef,pnl:yPnl,cap:S.capital.yousef,cls:'settle-yousef',col:'--yousef',col2:'--yousef2'},
+  ].map(p=>{
+    const totalWealth=p.stocksVal+Math.max(0,p.cash);
+    const totalPnlFromCap=totalWealth-p.cap;
+    return `<div class="settle-card ${p.cls}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:13px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(${p.col}-dim);border:1px solid var(${p.col}-bdr);display:flex;align-items:center;justify-content:center;font-size:1rem">👤</div>
+          <div><div style="font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(${p.col});font-weight:800">شريك</div><div style="font-size:1rem;font-weight:800">${p.name}</div></div>
+        </div>
+        <div style="text-align:left">
+          <div style="font-size:.6rem;color:var(--dim);margin-bottom:4px">إجمالي الثروة</div>
+          <div class="mono" style="font-size:1.8rem;font-weight:700;color:var(${p.col2});line-height:1">${fmt(totalWealth,2)}<span style="font-size:.85rem;margin-right:3px">ج</span></div>
+        </div>
+      </div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,var(${p.col}-bdr),transparent);margin-bottom:10px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+        <div style="background:var(--bg3);border-radius:9px;padding:9px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:.58rem;color:var(--dim);margin-bottom:3px;font-weight:700">📈 أسهم</div>
+          <div class="mono" style="font-size:.9rem;font-weight:700;color:var(${p.col2})">${fmt(p.stocksVal,2)} ج</div>
+          <div style="margin-top:3px">${pnlHtml(p.pnl)}</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:9px;padding:9px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:.58rem;color:var(--dim);margin-bottom:3px;font-weight:700">💵 نقدي</div>
+          <div class="mono" style="font-size:.9rem;font-weight:700;color:${p.cash>=0?'var(--green)':'var(--red)'}">${fmt(p.cash,2)} ج</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:.72rem;color:var(--dim)">رأسمال ${fmt(p.cap)} ج</span>
+        <div>${pnlHtml(totalPnlFromCap)}<span style="font-size:.6rem;color:var(--dim);margin-right:4px"> (إجمالي)</span></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('settle-detail').innerHTML=!S.stocks.length?`<div class="empty">📊<span>مفيش أسهم</span></div>`:S.stocks.map(s=>{
+    const c=sc(s);
+    return `<div class="card" style="padding:13px 15px;margin-bottom:9px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">
+        <div style="display:flex;align-items:center;gap:8px"><div class="sticker"><span class="mono" style="font-size:.55rem;font-weight:800;color:var(--yousef2)">${s.ticker.slice(0,4)}</span></div><div><div style="font-weight:800">${s.ticker}</div><div style="font-size:.63rem;color:var(--dim)">${s.name}</div></div></div>
+        ${pnlHtml(c.totalPnl)}
+      </div>
+      <div class="split-grid">
+        <div class="sb sb-a"><div class="sb-name">👤 عمرو</div><div class="sb-qty">${fmt(s.amrQty)} سهم</div><div class="sb-val">${fmt(c.amrVal,2)} ج</div>${pnlHtml(c.amrPnl)}</div>
+        <div class="sb sb-y"><div class="sb-name">👤 يوسف</div><div class="sb-qty">${fmt(s.yousefQty)} سهم</div><div class="sb-val">${fmt(c.yousefVal,2)} ج</div>${pnlHtml(c.yousefPnl)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTransfers() {
+  document.getElementById('tf-list').innerHTML=!S.transfers.length?`<div class="empty">💸<span>مفيش تحويلات</span></div>`:[...S.transfers].reverse().map(t=>`
+    <div class="tf-row">
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.9rem">👤→👤</span><div><div style="font-weight:700;font-size:.85rem">${t.dir==='y2a'?'يوسف ← عمرو':'عمرو ← يوسف'}</div><div style="font-size:.65rem;color:var(--dim)">${dFmt(t.date)}${t.note?' • '+t.note:''}</div></div></div>
+      <div style="display:flex;align-items:center;gap:9px"><span class="mono gold" style="font-weight:800;font-size:.95rem">${fmt(t.amt)} ج</span><button onclick="deleteTransfer(${t.id})" style="width:26px;height:26px;border-radius:7px;background:transparent;border:1px solid transparent;color:var(--dim);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;font-size:.8rem" onmouseover="this.style.background='var(--red-dim)';this.style.borderColor='var(--red-bdr)';this.style.color='var(--red)'" onmouseout="this.style.background='transparent';this.style.borderColor='transparent';this.style.color='var(--dim)'">✕</button></div>
+    </div>`).join('');
+}
+
+function renderNotes() {
+  const moodStyle={good:{border:'var(--green-bdr)',col:'var(--green)',bg:'var(--green-dim)',ico:'📈'},neutral:{border:'var(--orange-bdr)',col:'var(--orange)',bg:'var(--orange-dim)',ico:'↔️'},bad:{border:'var(--red-bdr)',col:'var(--red)',bg:'var(--red-dim)',ico:'📉'}};
+  document.getElementById('notes-list').innerHTML=!S.notes.length?`<div class="empty">📓<span>مفيش جلسات</span></div>`:[...S.notes].reverse().map(n=>{
+    const m=moodStyle[n.mood]||moodStyle.good;
+    return `<div class="note-card" style="border:1px solid ${m.border}"><div class="note-bar" style="background:${m.col}"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:.7rem;color:var(--dim);font-weight:700">${new Date(n.date).toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long'})}</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="display:flex;align-items:center;gap:4px;font-size:.7rem;color:${m.col};font-weight:800;padding:3px 9px;border-radius:20px;background:${m.bg};border:1px solid ${m.border}">${m.ico} ${n.mood==='good'?'جيدة':n.mood==='bad'?'سيئة':'عادية'}</span><button onclick="deleteNote(${n.id})" style="width:26px;height:26px;border-radius:7px;background:transparent;border:1px solid transparent;color:var(--dim);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;font-size:.8rem" onmouseover="this.style.background='var(--red-dim)';this.style.borderColor='var(--red-bdr)';this.style.color='var(--red)'" onmouseout="this.style.background='transparent';this.style.borderColor='transparent';this.style.color='var(--dim)'">✕</button></div>
+      </div>
+      <div style="font-size:.88rem;line-height:1.7;white-space:pre-wrap">${n.text}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderArchive() {
+  document.getElementById('archive-list').innerHTML=!S.archive.length?`<div class="empty">🗃️<span>الأرشيف فاضي</span></div>`:[...S.archive].reverse().map(s=>`
+    <div class="arc-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px"><div class="sticker"><span class="mono" style="font-size:.55rem;font-weight:800;color:var(--purple)">${s.ticker.slice(0,4)}</span></div><div><div style="font-weight:800;font-size:.9rem">${s.ticker}</div><div style="font-size:.63rem;color:var(--dim)">${s.name}</div></div></div>
+        <div style="text-align:left"><span class="tag tag-arc">أرشيف</span><div style="font-size:.65rem;color:var(--dim);margin-top:3px">${dFmt(s.soldDate)}</div></div>
+      </div>
+      ${!s.manualArchive?`<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px"><div class="stat-box"><div class="stat-lbl">سعر البيع</div><div class="stat-val mono gold">${s.soldAt} ج</div></div><div class="stat-box"><div class="stat-lbl">يرجع لعمرو</div><div class="stat-val mono cyan">${fmt(s.aReturn,2)} ج</div></div><div class="stat-box"><div class="stat-lbl">يرجع ليوسف</div><div class="stat-val mono gold">${fmt(s.yReturn,2)} ج</div></div></div>${s.totalPnl!=null?`<div style="text-align:center">${pnlHtml(s.totalPnl,true)}</div>`:''}`:
+      `<div style="font-size:.78rem;color:var(--dim);text-align:center">أرشفة يدوية — بدون بيع مسجل</div>`}
+    </div>`).join('');
+}
+
+function filterLog(f,el) { _logFilter=f; document.querySelectorAll('#page-log .fbtn').forEach(b=>b.classList.remove('on')); el.classList.add('on'); renderLog(); }
+
+function renderLog() {
+  const logs=_logFilter==='all'?[...(S.auditLog||[])].reverse():[...(S.auditLog||[])].filter(l=>l.type===_logFilter).reverse();
+  const typeCls={sell:'log-sell',buy:'log-buy',price:'log-price',edit:'log-edit',capital:'log-capital',archive:'log-archive',transfer:'log-transfer',cash:'log-cash'};
+  document.getElementById('log-list').innerHTML=!logs.length?`<div class="empty">🕒<span>مفيش عمليات</span></div>`:logs.map(l=>`
+    <div class="log-row ${typeCls[l.type]||''}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px"><div style="font-size:.82rem;font-weight:700">${l.desc}</div><div style="font-size:.62rem;color:var(--dim);text-align:left;flex-shrink:0;margin-right:8px">${l.time}</div></div>
+      ${l.detail?`<div style="font-size:.7rem;color:var(--dim)">${l.detail}</div>`:''}
+      <div style="font-size:.62rem;color:var(--dim2);margin-top:3px">${l.date}</div>
+    </div>`).join('');
+}
+
+function renderSettings() {
+  document.getElementById('cap-amr').value   = S.capital.amr;
+  document.getElementById('cap-yousef').value = S.capital.yousef;
+  const c = calcCash();
+  document.getElementById('cash-amr-inp').value    = c.amr.toFixed(2);
+  document.getElementById('cash-yousef-inp').value = c.yousef.toFixed(2);
+}
+
+function init() {
+  loadS();
+  document.getElementById('hdr-date').textContent=new Date().toLocaleDateString('ar-EG',{weekday:'short',day:'numeric',month:'long'});
+  const td=todayISO();
+  ['tr-date','tf-date','note-date'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=td;});
+  selOwner('shared','ns'); selOwner('shared','em'); selMood('good');
+  syncUR(); buildNav(); renderAll();
+}
+
+init();
+</script>
+
+<style>
+.bot-fab{position:fixed;bottom:82px;right:16px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--amr),#0077aa);border:none;color:#000;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,212,255,.4);z-index:200;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bot-fab:hover{transform:scale(1.1)}
+.bot-panel{position:fixed;bottom:0;left:0;right:0;height:72vh;max-width:var(--container);margin:0 auto;background:var(--bg2);border-radius:22px 22px 0 0;border-top:1px solid var(--amr-bdr);z-index:190;transform:translateY(100%);transition:transform .35s cubic-bezier(.34,1.1,.64,1);display:flex;flex-direction:column;box-shadow:0 -20px 60px rgba(0,212,255,.1)}
+.bot-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--amr),transparent);border-radius:22px 22px 0 0}
+.bot-hdr{padding:14px 18px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.bot-title{font-size:.92rem;font-weight:800;color:var(--amr2);display:flex;align-items:center;gap:8px}
+.bot-messages{flex:1;overflow-y:auto;padding:14px 16px;scrollbar-width:none}
+.bot-messages::-webkit-scrollbar{display:none}
+.bot-thinking{display:none;align-items:center;gap:8px;padding:0 16px 10px}
+.bot-dot{width:7px;height:7px;border-radius:50%;background:var(--amr);animation:botpulse 1.2s ease infinite}
+.bot-dot:nth-child(2){animation-delay:.2s}
+.bot-dot:nth-child(3){animation-delay:.4s}
+@keyframes botpulse{0%,80%,100%{transform:scale(.7);opacity:.4}40%{transform:scale(1);opacity:1}}
+.bot-inp-row{padding:10px 12px 20px;display:flex;gap:9px;align-items:flex-end;border-top:1px solid var(--border)}
+.bot-inp{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:10px 13px;color:var(--white);font-family:'Tajawal',sans-serif;font-size:.88rem;outline:none;resize:none;max-height:80px;transition:border-color .18s;line-height:1.5}
+.bot-inp:focus{border-color:var(--amr)}
+.bot-send{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--amr),#0077aa);border:none;color:#000;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}
+.bot-send:hover{filter:brightness(1.15)}
+</style>
+
+<button class="bot-fab" onclick="toggleBot()" id="bot-fab-btn"><span id="bot-fab-ico">🤖</span></button>
+<div class="bot-panel" id="bot-panel">
+  <div class="bot-hdr">
+    <div class="bot-title"><span>🤖</span> مساعد المحفظة <span style="font-size:.62rem;color:var(--amr);background:var(--amr-dim);border:1px solid var(--amr-bdr);padding:2px 8px;border-radius:10px;font-weight:700">AI</span></div>
+    <button onclick="toggleBot()" style="background:var(--bg3);border:1px solid var(--border2);color:var(--dim);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem">✕</button>
+  </div>
+  <div class="bot-messages" id="bot-messages"></div>
+  <div class="bot-thinking" id="bot-thinking"><div class="bot-dot"></div><div class="bot-dot"></div><div class="bot-dot"></div><span style="font-size:.72rem;color:var(--dim)">بيفكر...</span></div>
+  <div class="bot-inp-row">
+    <textarea class="bot-inp" id="bot-input" placeholder="قولي إيه اللي حصل..." rows="1"></textarea>
+    <button class="bot-send" onclick="sendBotMessage()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </div>
+</div>
+
+<script>
+let botOpen=false, botHistory=[];
+function getBotApiKey(){return localStorage.getItem('bp-api-key')||'';}
+function saveBotApiKey(k){localStorage.setItem('bp-api-key',k.trim());}
+function toggleBot(){
+  botOpen=!botOpen;
+  document.getElementById('bot-panel').style.transform=botOpen?'translateY(0)':'translateY(100%)';
+  document.getElementById('bot-fab-ico').textContent=botOpen?'✕':'🤖';
+  if(botOpen&&botHistory.length===0){if(!getBotApiKey()){renderKeySetup();}else{addBotMsg('bot','أهلاً! أنا مساعدك في محفظة البحراوي × أصلان 📊\n\nأقدر أساعدك في:\n• تسجيل شراء أو بيع\n• تحديث سعر سهم\n• عرض ملخص المحفظة\n\nقولي إيه اللي حصل!');}}
+}
+function renderKeySetup(){
+  document.getElementById('bot-messages').innerHTML=`<div style="padding:16px 4px"><div style="text-align:center;margin-bottom:16px"><div style="font-size:2rem;margin-bottom:8px">🔑</div><div style="font-size:.92rem;font-weight:800;color:var(--amr2);margin-bottom:6px">إعداد البوت</div><div style="font-size:.78rem;color:var(--dim);line-height:1.6">محتاج API key من Anthropic</div></div><input type="password" id="key-inp" class="inp" placeholder="sk-ant-api03-..." style="margin-bottom:8px;font-family:monospace;font-size:.82rem"><button onclick="submitApiKey()" class="btn-primary" style="margin-top:0">حفظ وتشغيل البوت</button></div>`;
+}
+function submitApiKey(){const el=document.getElementById('key-inp');const k=el?el.value.trim():'';if(!k||!k.startsWith('sk-')){if(el)el.style.borderColor='var(--red)';return;}saveBotApiKey(k);botHistory=[];addBotMsg('bot','✅ تم حفظ الـ API key!\nأهلاً! جاهز أساعدك.');}
+function addBotMsg(role,text){botHistory.push({role,text,time:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});renderBotMessages();}
+function renderBotMessages(){const el=document.getElementById('bot-messages');el.innerHTML=botHistory.map(m=>`<div style="display:flex;flex-direction:column;align-items:${m.role==='user'?'flex-end':'flex-start'};margin-bottom:10px"><div style="max-width:85%;padding:10px 13px;border-radius:${m.role==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px'};background:${m.role==='user'?'linear-gradient(135deg,var(--yousef),#a87800)':'var(--bg3)'};color:${m.role==='user'?'#000':'var(--white)'};font-size:.84rem;line-height:1.6;border:${m.role==='bot'?'1px solid var(--border2)':'none'};white-space:pre-wrap">${m.text}</div><div style="font-size:.58rem;color:var(--dim);margin-top:3px;padding:0 4px">${m.time}</div></div>`).join('');el.scrollTop=el.scrollHeight;}
+function getBotContext(){const t=totals();const cash=calcCash();return{capital:S.capital,cash,stocks:S.stocks.map(s=>{const c=sc(s);return{ticker:s.ticker,name:s.name,amrQty:s.amrQty,yousefQty:s.yousefQty,buyPrice:s.buyPrice,currentPrice:s.price,totalPnl:c.totalPnl};}),portfolioTotal:t.total,portfolioPnl:t.totalPnl};}
+async function sendBotMessage(){
+  const inp=document.getElementById('bot-input');const msg=inp.value.trim();if(!msg)return;inp.value='';addBotMsg('user',msg);
+  const apiKey=getBotApiKey();if(!apiKey){addBotMsg('bot','⚠️ محتاج API key أولاً — اضغط على زرار البوت وسجل الـ key');return;}
+  const thinking=document.getElementById('bot-thinking');thinking.style.display='flex';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:`أنت مساعد محفظة بورصة. البيانات: ${JSON.stringify(getBotContext())}. رد بالعربي باختصار.`,messages:[...botHistory.slice(-6).filter(m=>!m.text.includes('أهلاً')).map(m=>({role:m.role==='user'?'user':'assistant',content:m.text})),{role:'user',content:msg}]})});
+    const data=await res.json();thinking.style.display='none';
+    if(!res.ok){addBotMsg('bot',`❌ خطأ: ${(data.error && data.error.message)||'حاول تاني'}`);return;}
+    addBotMsg('bot',(data.content && data.content[0] && data.content[0].text)||'✅');
+  }catch(e){thinking.style.display='none';addBotMsg('bot',`❌ خطأ: ${e.message}`);}
+}
+window.addEventListener('load',()=>{const bi=document.getElementById('bot-input');if(bi)bi.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendBotMessage();}});});
+</script>
+</body>
+</html>
